@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  {% if title %}
+      <title>{{ title }}</title>
+      {% else %}
+      <title> No title specified</title>
+      {% endif %}
+  </head>
+  <body>
+    <h1 style="font-size: 50px">Movies from DB</h1>
+    <div>
+    	{% for movie in movies %}
+		<h2>{{ movie.title }}</h2>
+		<p>Blurb: {{ movie.blurb }}</p>
+		<p>Director: {{ movie.director }}</p>
+		<p>Certificate: {{ movie.certificate }} </p>
+		{% endfor %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+  <head>
+  {% if title %}
+      <title>{{ title }}</title>
+      {% else %}
+      <title> No title specified</title>
+      {% endif %}
+  </head>
+  <body>
+
+
+    <div>
+      <table class="table table-striped">
+        <thead>
+        <th>Time</th>
+        <th>Screen</th>
+
+        <th>Title</th>
+        <th>Age Rating</th>
+
+
+      </thead>
+
+    	{% for p in screenings %}
+      <tr>
+      <td><h2>{{ p.time }}</h2></td>
+      <td><h2>{{ p.cinemascreens.num }}</h2></td>
+      <td><h2>{{ p.movies.title }}</h2></td>
+
+      <td><h2>{{ p.movies.certificate }}</h2></td>
+    </tr>
+
+
+
+		{% endfor %}
+    </table>
+    </div>
+
+  </body>
+
+{% endblock %}

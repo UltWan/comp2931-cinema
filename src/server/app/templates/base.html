@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html >
+<link rel="stylesheet" href="static/bootstrap.min.css">
+<head>
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title> No title specified</title>
+  {% endif %}
+</head>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Task Manager</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><button class="navbar"><a href="/">Movies</a></button></li>
+      <li><button class="navbar"><a href="/screenings">Screenings</a></button></li>
+      <li><a href="/add-task">Add task</a></li>
+      <form class="navbar-form navbar-right" role="search">
+        <input type="text" class="form-control" placeholder="Search" ng-model="search.name" ng-keyup="startSearch()">
+
+        </form>
+
+    </ul>
+
+
+  </div>
+</nav>
+<div class = "bcontent">
+  {% block content %}
+
+  {% endblock %}
+</div>
+
+</body>
+</html>

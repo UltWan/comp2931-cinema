@@ -49,7 +49,6 @@ public class Cash extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Cashier Till");
         //Create UI
         GridPane gridPane = new GridPane();
         gridPane.setAlignment(Pos.CENTER);
@@ -89,7 +88,7 @@ public class Cash extends Application {
 
         if(total > cash)
         {
-            tfChangeGiven.setText("Error: Insufficient Cash");
+            tfChangeGiven.setText("Insufficient Cash Entered");
         }
         else
         {

@@ -5,3 +5,8 @@ from flask import render_template, redirect
 def index():
 	movies = models.Movies.query.all()
 	return render_template('movies.html', title='Movies From Database', movies=movies)
+
+@app.route('/screenings')
+def curscreenings():
+	movies = models.Movies.query.all()
+	return render_template('screenings.html', title="Screenings", movies=movies)

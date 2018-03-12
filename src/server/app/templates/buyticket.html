@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li>{{ message }} </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+  <head>
+  {% if title %}
+      <title>{{ title }}</title>
+      {% else %}
+      <title> No title specified</title>
+      {% endif %}
+  </head>
+  <div class="app-title" >
+    <h1>{{p.movies.title}}</h1>
+  </div>
+
+
+
+    <body>
+      <!-- <form action="/buyticket/{{p.id}}" method="post" name="buyticket"> -->
+      <form action="" method="post" name="buyticket">
+        <div class="outset1">
+
+
+          {{ form.hidden_tag() }}
+          <p>
+            <a>Quantity</a>
+            {{ form.quantity }}<br>
+          </p>
+          <p>
+            <a>Seats left</a>
+            {{ p.seats }}<br>
+          </p>
+
+          <p><input type="submit" value="buy tickets" class="btn btn-primary btn-large btn-block"></p>
+
+        </div>
+      </form>
+
+
+
+
+  </body>
+{% endwith %}
+{% endblock %}

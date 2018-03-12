@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <html >
-<link rel="stylesheet" href="static/bootstrap.min.css">
+<link rel="stylesheet" href="static/styles/bootstrap.min.css">
+<link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}">
 <head>
   {% if title %}
   <title>{{ title }}</title>
@@ -18,7 +19,8 @@
     <ul class="nav navbar-nav">
       <li><button class="navbar"><a href="/">Movies</a></button></li>
       <li><button class="navbar"><a href="/screenings">Screenings</a></button></li>
-      <li><a href="/add-task">Add task</a></li>
+      <li><button class="navbar"><a href="/buyticket">Buy tickets</a></button></li>
+
       <form class="navbar-form navbar-right" role="search">
         <input type="text" class="form-control" placeholder="Search" ng-model="search.name" ng-keyup="startSearch()">
 

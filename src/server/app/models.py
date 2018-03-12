@@ -6,7 +6,7 @@ class Screening(db.Model):
     time = db.Column(db.String(30))
     movie_id = db.Column(db.Integer, db.ForeignKey('Movies.id'))
     cinemascreen_id = db.Column(db.Integer, db.ForeignKey('Cinemascreens.id'))
-
+    seats = db.Column(db.Integer)
 
 class Movies(db.Model):
     __tablename__ = 'Movies'

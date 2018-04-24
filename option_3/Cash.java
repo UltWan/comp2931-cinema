@@ -29,7 +29,7 @@ public class Cash extends Application {
         private double total;
         private double cashGiven;
 
-        public Transaction(double adult, double child, double senior, 
+        public Transaction(double adult, double child, double senior,
             double student, double cashGiven) {
             this.adult = adult;
             this.child = child;
@@ -71,7 +71,7 @@ public class Cash extends Application {
         }
 
         public double getTotal() {
-            double total = ((adult * 10) + (child * 7.5) + (senior * 8) + 
+            double total = ((adult * 10) + (child * 7.5) + (senior * 8) +
                 (student * 8));
             return total;
         }
@@ -123,6 +123,7 @@ public class Cash extends Application {
         gridPane.add(new Label("Change Given:"), 0, 16);
         gridPane.add(tfChangeGiven, 2, 16);
         gridPane.add(btCalculate2, 2, 18);
+        gridPane.Vbox(1);
 
         //Set properties for UI
         gridPane.setAlignment(Pos.CENTER);
@@ -159,7 +160,7 @@ public class Cash extends Application {
         Transaction transaction = new Transaction(adult, child, senior, student, cash);
 
         tfTotal.setText(String.format("£%.2f", transaction.getTotal()));
-    }    
+    }
 
     private void calculateChangeGiven() {
         double adult = Integer.parseInt(tfAdult.getText());

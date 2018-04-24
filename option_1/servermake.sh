@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+mkdir bin
 cd bin
 virtualenv server
 source ./server/bin/activate
@@ -21,4 +22,3 @@ cd ..
 cp -a src/server/. bin/server
 cd bin/server
 python run.py
-

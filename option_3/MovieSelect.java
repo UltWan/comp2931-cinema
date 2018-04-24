@@ -1,4 +1,7 @@
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.HPos;
 import javafx.scene.control.ComboBox;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
@@ -6,9 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import java.util.*;
 import java.sql.*;
 
 public class MovieSelect extends Application {
@@ -23,20 +26,17 @@ public class MovieSelect extends Application {
     initialiseDB();
     fillComboBox();
 
-    //ComboBox<String> movieComboBox = new ComboBox<>(movieList);
-    //movieComboBox.setEditable(true);
-
     Button btMovieSelection = new Button("Select Movie");
     HBox hBox = new HBox(5);
+    hBox.setAlignment(Pos.CENTER);
     hBox.getChildren().addAll(new Label("Movie: "), movieComboBox, (btMovieSelection));
 
     VBox vBox = new VBox(10);
     vBox.getChildren().addAll(hBox, lblStatus);
 
-    //movieComboBox.setPrefColumnCount(6);
     btMovieSelection.setOnAction(e -> movieSelection());
 
-    Scene scene = new Scene (vBox, 420, 80);
+    Scene scene = new Scene (vBox, 500, 250);
     primaryStage.setTitle("Movie Listings");
     primaryStage.setScene(scene);
     primaryStage.show();
@@ -73,23 +73,12 @@ public class MovieSelect extends Application {
     }
   }
 
-  // incomplete - needs to display text
   public void movieSelection() {
     String title = movieComboBox.getValue();
-    //String title = movieComboBox.getText();
     try {
-      preparedStatement.setString(1, title);
-      ResultSet rset = preparedStatement.executeQuery();
-
-      if (rset.next()) {
-        String movieTitle = rset.getString(1);
-
-        lblStatus.setText(title + "selected");
-      } else {
-        lblStatus.setText("Not found");
-      }
+        lblStatus.setText(title + " selected");
     }
-    catch (SQLException ex) {
+    catch (Exception ex) {
       ex.printStackTrace();
     }
   }

@@ -1,6 +1,6 @@
 from app import app, db, models
 from flask import render_template, flash, request, redirect, url_for, session
-from .forms import addMovie, bookingForm
+from .forms import addMovie, bookingForm, addScreenings
 
 @app.route('/')
 def index():
@@ -16,6 +16,19 @@ def admin():
 		db.session.commit()
 	return render_template('admin.html', title="Register", form=form)
 
+@app.route('/admin_addScreenings', methods=['GET', 'POST'])
+def admin_addScreenings():
+	form = addScreenings()
+	if form.validate_on_submit():
+		screening = models.Screening()
+		screening.movie = form.movie.data
+		screening.screen = form.screen.data
+		screening.tickets_sold = 0
+		screening.seats_available = 100
+		db.session.add(screening)
+		db.session.commit()
+	return render_template('add_screening.html', title = "Add Movie Screening", form = form)
+
 @app.route('/buyticket/<int:id>',methods=['GET', 'POST'])
 def book(id):
 	form = bookingForm()
@@ -25,6 +38,7 @@ def book(id):
 		p = models.Screenings.query.get(id)
 		p.tickets_sold = p.tickets_sold + form.quantity.data
 		p.seats_available = p.seats_available - form.quantity.data
+		db.session.add(p)
 		db.session.commit()
 		flash("here")
 	else:

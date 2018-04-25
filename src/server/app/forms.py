@@ -9,5 +9,9 @@ class addMovie(Form):
 	certificate = TextField('certificate', validators=[DataRequired()])
 	director = TextField('director', validators=[DataRequired()])
 
+class addScreenings(Form):
+	movie = TextField('title', validators=[DataRequired()])
+	screen = IntegerField( [validators.NumberRange(min=0, max=10)])
+	
 class bookingForm(Form):
     quantity = IntegerField( [validators.NumberRange(min=0, max=10)])

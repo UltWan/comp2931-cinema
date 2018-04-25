@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+mkdir bin
 cd bin
 virtualenv server
 source ./server/bin/activate

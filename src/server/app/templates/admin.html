@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  {% if title %}
+      <title>{{ title }}</title>
+      {% else %}
+      <title> No title specified</title>
+      {% endif %}
+  </head>
+  <body>
+    <h1>Add Movie</h1>
+<form action="" method="post" name="AddMovie">
+    {{ form.hidden_tag() }}
+    <TABLE align="center" BORDER="0">
+   <TR>
+    <TD align="left">Title: </TD>
+    <TD align="right">
+      {{ form.title }}
+    </TD>
+  </TR>
+     <TR>
+    <TD align="left">Blurb: </TD>
+    <TD align="right">
+      {{ form.blurb }}
+    </TD>
+  </TR>
+  <TR>
+    <TD align="left">Certificate: </TD>
+    <TD align="right">
+      {{ form.certificate }}
+    </TD>
+  </TR>
+   <TR>
+    <TD align="left">Director: </TD>
+    <TD align="right">
+      {{ form.director }}
+    </TD>
+  </TR>
+
+  </TABLE>
+  <p><input type="submit" value="Add Movie"></p>
+</form>
+  </body>
+</html>

@@ -20,5 +20,6 @@ cd ..
 cd ..
 cp -a src/server/. bin/server
 cd bin/server
+python db_create.py
 python run.py
 

@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -8,7 +9,12 @@ import javafx.scene.control.PasswordField ;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.ChoiceDialog;
 
 public class Login extends Application {
 
@@ -16,7 +22,7 @@ public class Login extends Application {
     TextField usernametext;
     PasswordField Password;
     Label error,labelUsername,labelPassword;
-    int index;
+    int attempt = 5;
     String[] user = new String[20];
     String[] pass = new String[20];
 
@@ -35,12 +41,13 @@ public class Login extends Application {
 
         cancel = new Button();
         cancel.setText("Cancel");
+        cancel.setOnAction(e -> Platform.exit());
 
         usernametext=new TextField();
-        usernametext.setMaxWidth(200);
+        usernametext.setMaxWidth(300);
 
-        Password=new PasswordField();
-        Password.setMaxWidth(200);
+        Password =new PasswordField();
+        Password.setMaxWidth(300);
 
         labelUsername=new Label();
         labelUsername.setText("Username");
@@ -48,36 +55,31 @@ public class Login extends Application {
         labelPassword=new Label();
         labelPassword.setText("Password");
 
+
        signin.setOnAction(e ->{
-           if (index < 15 ){
-            index++;
-            user[index]=usernametext.getText();
-            pass[index]=Password.getText();
+           while (attempt !=0 ){
+            if (usernametext.getText().equals("1234") && Password.getText().equals("1234")){
+            //user[attempt]=usernametext.getText("1234");
+            // pass[attempt]=Password.getText("1234");
 
 
-           usernametext.clear();
-           Password.clear();
-       }else{
-
+            return;
        }
-       });
+       else {
 
-      //  cancel.setOnAction(e ->{
-      //      for (int c = 0; c < 15; c++)
-      //      {
-      //     if ((user[c] == usernametext.getText()) && (pass[c] == Password.getText())){
-      //           //  error.display("good");
-      //           }
-      //     else{
-      //       //  error.display( "missing words");
-      //       }
-      //   }
-      //});
+          attempt --;
+       }
+       }
+     });
+
+       cancel.setOnAction(e -> Platform.exit());
+
 
 
         VBox layout = new VBox();
         layout.getChildren().addAll(labelUsername,usernametext,labelPassword,Password,signin,cancel);
-        Scene scene = new Scene(layout, 300, 250);
+        layout.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(layout, 400, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

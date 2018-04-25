@@ -1,7 +1,6 @@
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.HPos;
@@ -15,8 +14,10 @@ public class MovieSelect extends Application {
   private PreparedStatement prepStatementTitle;
   private PreparedStatement prepStatementCert;
   private PreparedStatement prepStatementTime;
+  private PreparedStatement prepStatementScreen;
   private Label lblConfirm = new Label();
   private TextField tfCert = new TextField();
+  private TextField tfScreen = new TextField();
   private Connection connection;
   private ObservableList<String> movieList = FXCollections.observableArrayList();
   private ObservableList<String> timeList = FXCollections.observableArrayList();
@@ -30,16 +31,20 @@ public class MovieSelect extends Application {
 
     Button btSelectMovie = new Button("Select Movie");
     tfCert.setEditable(false);
+    tfScreen.setEditable(false);
 
     HBox hBox = new HBox(5);
     hBox.setAlignment(Pos.CENTER);
     hBox.getChildren().addAll(new Label("Movie: "), movieComboBox,
                               new Label("Certificate: "),tfCert,
                               new Label("Time: "), timeComboBox,
-                              btSelectMovie);
+                              new Label("Screen: "),tfScreen, btSelectMovie);
 
     VBox vBox = new VBox(10);
     vBox.getChildren().addAll(hBox, lblConfirm);
+
+    tfCert.setPrefColumnCount(3);
+    tfScreen.setPrefColumnCount(2);
 
     // fills certificate field and time combobox with values corresponding to
     // the movie selected
@@ -63,15 +68,36 @@ public class MovieSelect extends Application {
         while(rsetTime.next()) {
           timeList.add(rsetTime.getString("time"));
         }
+
+        tfScreen.setText("");
+        lblConfirm.setText("");
       }
       catch (SQLException ex) {
         ex.printStackTrace();
       }
     });
 
+    //screen TextField is filled after time is selected
+    timeComboBox.setOnAction(e-> {
+      try {
+        String queryScreen = "SELECT title, time, theatre_num FROM schedule WHERE title = ? and time = ?";
+        prepStatementScreen = connection.prepareStatement(queryScreen);
+        prepStatementScreen.setString
+          (1,(String)movieComboBox.getSelectionModel().getSelectedItem());
+        prepStatementScreen.setString
+          (2,(String)timeComboBox.getSelectionModel().getSelectedItem());
+        ResultSet rsetScreen = prepStatementScreen.executeQuery();
+
+        lblConfirm.setText("");
+        tfScreen.setText(rsetScreen.getString("theatre_num"));
+      }
+      catch (SQLException ex) {
+        ex.printStackTrace();
+      }
+    });
     btSelectMovie.setOnAction(e -> movieSelection());
 
-    Scene scene = new Scene (vBox, 800, 250);
+    Scene scene = new Scene (vBox, 750, 250);
     primaryStage.setTitle("Movie Listings");
     primaryStage.setScene(scene);
     primaryStage.show();
@@ -113,10 +139,11 @@ public class MovieSelect extends Application {
     String title = movieComboBox.getValue();
     String certificate = tfCert.getText();
     String time = timeComboBox.getValue();
+    String screen = tfScreen.getText();
 
     try {
       if (title != null && time != null) {
-        lblConfirm.setText(title + " selected for the " + time + " showing.");
+        lblConfirm.setText(title + " selected for the " + time + " showing in theatre " + screen);
       }
       else {
         lblConfirm.setText("Error: Movie or time not selected");

@@ -15,3 +15,17 @@ def admin():
 		db.session.add(movie)
 		db.session.commit()
 	return render_template('admin.html', title="Register", form=form)
+
+@app.route('/buyticket/<int:id>',methods=['GET', 'POST'])
+def book(id):
+	form = bookingForm()
+	flash("here")
+	if form.validate_on_submit():
+
+		p = models.Screening.query.get(id)
+		p.seats = p.seats - form.quantity.data
+		db.session.commit()
+		flash("here")
+	else:
+		if form.quantity.data =="":
+    			flash("Please Quantity")

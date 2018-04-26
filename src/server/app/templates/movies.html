@@ -15,6 +15,7 @@
 		<p>Blurb: {{ movie.blurb }}</p>
 		<p>Director: {{ movie.director }}</p>
 		<p>Certificate: {{ movie.certificate }} </p>
+    <img src="{{ "static/images/"+movie.poster }}" width="20%">
 		{% endfor %}
     </div>
   </body>

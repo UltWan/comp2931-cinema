@@ -1,5 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li>{{ message }} </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
   <head>
   {% if title %}
       <title>{{ title }}</title>
@@ -14,8 +23,10 @@
 		<h2>{{ movie.title }}</h2>
 		<p>Blurb: {{ movie.blurb }}</p>
 		<p>Director: {{ movie.director }}</p>
-		<p>Certificate: {{ movie.certificate }} </p>
+		<p>Certificate: {{ movie.certificate }}</p>
 		{% endfor %}
     </div>
   </body>
-</html>
+
+{% endwith %}
+{% endblock %}

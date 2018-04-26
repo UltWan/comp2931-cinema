@@ -14,28 +14,31 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">Task Manager</a>
+      <a class="navbar-brand" href="/">Jackdaw Cinema</a>
     </div>
     <ul class="nav navbar-nav">
       <li><button class="navbar"><a href="/">Movies</a></button></li>
       <li><button class="navbar"><a href="/screenings">Screenings</a></button></li>
-      <li><button class="navbar"><a href="/buyticket">Buy tickets</a></button></li>
+      
 
-      <form class="navbar-form navbar-right" role="search">
-        <input type="text" class="form-control" placeholder="Search" ng-model="search.name" ng-keyup="startSearch()">
 
-        </form>
 
     </ul>
 
 
+
   </div>
+
 </nav>
-<div class = "bcontent">
+<div class="container-fluid " style="width:50%;">
+
+
   {% block content %}
 
   {% endblock %}
-</div>
+
+  </div>
+
 
 </body>
 </html>

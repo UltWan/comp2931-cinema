@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+  <head>
+  {% if title %}
+      <title>{{ title }}</title>
+      {% else %}
+      <title> No title specified</title>
+      {% endif %}
+  </head>
+  <body>
+
+
+    <div>
+      <table class="table table-striped">
+        <thead>
+        <th>Time</th>
+        <th>Screen</th>
+        <th>Seats remaining</th>
+
+        <th>Title</th>
+        <th>Age Rating</th>
+
+
+      </thead>
+
+    	{% for p in screenings %}
+      <tr>
+      <td><h2>{{ p.time }}</h2></td>
+      <td><h2>{{ p.screen.id }}</h2></td>
+      <td><h2>{{ p.seats_available}}</h2></td>
+      <td><h2>{{ p.movie.title }}</h2></td>
+      <td><h2>{{ p.movie.certificate }}</h2></td>
+      <td><li><button class="navbar"><a href="/buyticket/{{p.id}}">Buy tickets</a></button></li></td>
+    </tr>
+
+
+
+		{% endfor %}
+    </table>
+    </div>
+
+  </body>
+
+{% endblock %}

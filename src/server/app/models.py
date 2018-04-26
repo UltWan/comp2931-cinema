@@ -55,8 +55,7 @@ class Screenings(db.Model):
     __tablename__ = 'screenings'
     id = db.Column(db.Integer, primary_key=True)
     movie_id = db.Column(db.Integer, db.ForeignKey('Movies.id'))
-    name = db.Column(db.String(25))
-    time = db.Column(db.Float)
+    date = db.Column(db.String(25))
     cinemascreen_id = db.Column(db.Integer, db.ForeignKey('Screens.id'))
     ticket_id = db.Column(db.Integer, db.ForeignKey('Tickets.id'))
     tickets_sold = db.Column(db.Integer)

@@ -32,11 +32,13 @@ def admin_addScreenings():
 @app.route('/buyticket/<int:id>',methods=['GET', 'POST'])
 def book(id):
 	form = bookingForm()
-	flash("here")
+	# flash("here")
 	if form.validate_on_submit():
 		p = models.Screenings.query.get(id)
 		p.tickets_sold = p.tickets_sold + form.quantity.data
-		for x in range(1,form.quantity.data):
+		p.seats_available = p.seats_available - form.quantity.data
+
+		for x in range(0,form.quantity.data):
 			ticket = models.Tickets()
 			ticket.screening = p
 			ticket.name = form.name.data
@@ -46,17 +48,26 @@ def book(id):
 			ticket.title = p.movie.title
 			ticket.certificate = p.movie.certificate
 			ticket.screen = p.screen.id
-			p.seats_available = p.seats_available - form.quantity.data
+
 			db.session.add(ticket)
-			# db.session.add(p)
 			db.session.commit()
-			flash("here")
+			# db.session.add(p)
+			# flash("here")
+		tickets = models.Tickets.query.filter_by(name=form.name.data, title=p.movie.title)
+		return render_template('tickets.html',tickets=tickets)
+
 	else:
 		if form.quantity.data =="":
     			flash("Please enter Quantity")
 	Screening = models.Screenings.query.get(id)
 	# screenings = models.Screening.query.all()
 	return render_template('booking.html',title='Screening.movies.title', p=Screening, form = form)
+@app.route('/screenings')
+def screenings():
+	screenings = models.Screenings.query.all()
+	return render_template('screenings.html',title='Movie Screening', screenings=screenings)
+
+
 
 # add screenings
 # >>> screening.movies = movie

@@ -12,6 +12,8 @@ class addMovie(Form):
 class addScreenings(Form):
 	movie = TextField('title', validators=[DataRequired()])
 	screen = IntegerField( [validators.NumberRange(min=0, max=10)])
-	
+
 class bookingForm(Form):
-    quantity = IntegerField( [validators.NumberRange(min=0, max=10)])
+	name = TextField('name', validators=[DataRequired()])
+	email = TextField('email', validators=[DataRequired()])
+	quantity = IntegerField( [validators.NumberRange(min=0, max=10)])

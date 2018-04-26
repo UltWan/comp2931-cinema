@@ -21,22 +21,32 @@
   </div>
 
 
-
+    <h2>{{p.movie.name}} </h2>
+    <h2>Cinema {{p.screen.id}} </h2>
     <body>
       <!-- <form action="/buyticket/{{p.id}}" method="post" name="buyticket"> -->
       <form action="" method="post" name="buyticket">
         <div class="outset1">
 
-
+          <p>
+            <a>Seats left</a>
+            {{ p.seats_available }}<br>
+          </p>
           {{ form.hidden_tag() }}
           <p>
             <a>Quantity</a>
             {{ form.quantity }}<br>
           </p>
           <p>
-            <a>Seats left</a>
-            {{ p.seats_available }}<br>
+            <a>Name</a>
+            {{ form.name }}<br>
           </p>
+          <p>
+            <a>Email</a>
+            {{ form.email }}<br>
+          </p>
+
+
 
           <p><input type="submit" value="buy tickets" class="btn btn-primary btn-large btn-block"></p>
 

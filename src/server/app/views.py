@@ -34,13 +34,23 @@ def book(id):
 	form = bookingForm()
 	flash("here")
 	if form.validate_on_submit():
-
 		p = models.Screenings.query.get(id)
 		p.tickets_sold = p.tickets_sold + form.quantity.data
-		p.seats_available = p.seats_available - form.quantity.data
-		db.session.add(p)
-		db.session.commit()
-		flash("here")
+		for x in range(0,form.quantity.data):
+			ticket = models.Tickets()
+			ticket.screening = p
+			ticket.name = form.name.data
+			ticket.email = form.email.data
+			ticket.price = 7
+			ticket.type = "normal"
+			ticket.title = p.movie.title
+			ticket.certificate = p.movie.certificate
+			ticket.screen = p.screen.id
+			p.seats_available = p.seats_available - form.quantity.data
+			db.session.add(ticket)
+			db.session.add(p)
+			db.session.commit()
+			flash("here")
 	else:
 		if form.quantity.data =="":
     			flash("Please enter Quantity")

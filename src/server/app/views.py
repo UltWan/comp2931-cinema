@@ -1,9 +1,10 @@
-from app import app, db, models
+from app import app, db, models, mail
 from flask import render_template, flash, request, redirect, url_for, session
-from .forms import addMovie, addScreening, addScreen
+from .forms import addMovie, addScreening, addScreen, purchaseTicket
 from datetime import timedelta
 import os
 from werkzeug.utils import secure_filename
+from flask_mail import Message
 
 @app.route('/')
 def index():
@@ -66,3 +67,39 @@ def load_demo_data():
 	db.session.add(screen2)
 	db.session.commit()
 	return redirect(url_for('index'))
+
+@app.route('/screenings/<id>', methods=['GET', 'POST'])
+def screenings(id):
+	movies = models.Movies.query.all()
+	screenings = models.Screenings.query.filter_by(movie=id).all()
+	if len(screenings)>0:
+		return render_template('screenings.html', title="View Screenings", screenings=screenings, movies=movies)
+	else:
+		flash('No screenings found')
+		return redirect(url_for('index'))
+
+@app.route('/movie/<id>', methods=['GET', 'POST'])
+def movie(id):
+	movie = models.Movies.query.get(id)
+	if movie!=None:
+		return render_template('movie.html', title="Movie Details", movie=movie)
+	else:
+		return redirect(url_for('index'))
+
+@app.route('/purchase/<id>', methods=['GET', 'POST'])
+def purchase(id):
+	movies = models.Movies.query.all()
+	purchaseTicketform = purchaseTicket()
+	screening = models.Screenings.query.get(id)
+	if screening!=None:
+		if purchaseTicketform.validate_on_submit():
+			sendmail(request.form['email'], str(request.form['totaltickets']), str(movies[screening.movie-1].title), str(screening.date), str(screening.screen))
+		return render_template('booking.html', title='Purchase tickets', screening=screening, purchaseTicketform=purchaseTicketform)
+	else:
+		return redirect(url_for('index'))
+
+def sendmail(recipient, ntickets, title, date, screen):
+	message = 'Thank you for purchasing tickets for Jackdaw Cinema.\nYou have booked '+ntickets+'tickets for '+title+' on \n'+date+' at Screen '+screen+'.'
+	subject = "Your JackDaw Cinema Tickets"
+	msg = Message(recipients=[recipient], body=message, subject=subject, sender="jackdawcinema@mail.com")
+	mail.send(msg)

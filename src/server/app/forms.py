@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import TextField, TextAreaField, DateField, SelectField, SubmitField
+from wtforms import TextField, TextAreaField, DateField, SelectField, SubmitField, IntegerField, HiddenField
 from wtforms.validators import DataRequired
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 
@@ -21,3 +21,27 @@ class addScreening(Form):
 
 class addScreen(Form):
 	newscreen = SubmitField(label='New Screen')
+
+class purchaseTicket(Form):
+	cardholdern = TextField('cardholdern', validators=[DataRequired()])
+	ccnumber = IntegerField('ccnumber', validators=[DataRequired()])
+	expdate = DateField('expdate', validators=[DataRequired()], format='%m/%y')
+	cvvnumber = IntegerField('cvvnumber', validators=[DataRequired()])
+
+	email = TextField('email', validators=[DataRequired()])
+
+	#ticketamount = SelectField('movie', choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')]), coerce=int)
+
+	adult_std_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
+	adult_vip_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
+
+	student_std_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
+	student_vip_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
+
+	child_std_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
+	child_vip_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
+
+	senior_std_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
+	senior_vip_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
+
+	totaltickets = HiddenField("totaltickets")

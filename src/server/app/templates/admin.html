@@ -54,7 +54,7 @@
 
   <h1>Screenings</h1>
   {% for screening in screenings %}
-    <p>Movie: {{ movies[screening.movie].title }}</p>
+    <p>Movie: {{ movies[screening.movie-1].title }}</p>
     <p>Screen: {{ screening.screen }}</p>
     <p>Date: {{ screening.date }}</p>
   {% endfor %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  {% if title %}
+      <title>{{ title }}</title>
+      {% else %}
+      <title> No title specified</title>
+      {% endif %}
+  </head>
+  <body>
+    <h1 style="font-size: 50px">Screenings for {{ movies[screenings[0].movie-1].title }} </h1>
+    <div>
+    {% for screening in screenings %}
+		  <h2>Screen: {{ screening.screen }}</h2>
+		  <p>Seats available: {{ screening.seats_available }}</p>
+		  <p>Date: {{ screening.date }}</p>
+		{% endfor %}
+    </div>
+  </body>
+</html>

@@ -28,4 +28,11 @@ class Tickets(db.Model):
     email = db.Column(db.String(150))
     type = db.Column(db.String(30))
     price = db.Column(db.Float)
+
+class Seats(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    screen = db.Column(db.Integer, db.ForeignKey(Screens.id))
+    row = db.Column(db.Integer)
+    number = db.Column(db.Integer)
+    available = db.Column(db.Boolean)
     vip = db.Column(db.Boolean)

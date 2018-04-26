@@ -1,0 +1,35 @@
+.carousel-inner > .item > img{
+margin:auto;
+width:80%
+}
+body {
+    background-color: #161616;
+    color: #FF9E00;
+	font-family: 'Roboto Slab', serif;
+	overflow: scroll;
+
+}
+.navbar-default {
+	background-color: #161616;
+	border: none;
+}
+.nav.navbar-nav li a{
+	color: #54524D;
+}
+.nav.navbar-nav li a:hover{
+	color: #FF9E00;
+	}
+.navbar-default .navbar-brand {
+    color: #FF9E00;
+}
+.navbar-default .navbar-brand a:hover {
+    color: #FF9E00;
+}
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    background-color: #303133;
+}

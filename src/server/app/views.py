@@ -36,7 +36,7 @@ def book(id):
 	if form.validate_on_submit():
 		p = models.Screenings.query.get(id)
 		p.tickets_sold = p.tickets_sold + form.quantity.data
-		for x in range(0,form.quantity.data):
+		for x in range(1,form.quantity.data):
 			ticket = models.Tickets()
 			ticket.screening = p
 			ticket.name = form.name.data
@@ -48,7 +48,7 @@ def book(id):
 			ticket.screen = p.screen.id
 			p.seats_available = p.seats_available - form.quantity.data
 			db.session.add(ticket)
-			db.session.add(p)
+			# db.session.add(p)
 			db.session.commit()
 			flash("here")
 	else:

@@ -48,7 +48,7 @@ class Tickets(db.Model):
     title = db.Column(db.String(100))
     certificate = db.Column(db.String(30))
     screen = db.Column(db.Integer)
-    screening_id = db.Column(db.Integer, db.ForeignKey('screenings.id'))
+    # screening_id = db.Column(db.Integer, db.ForeignKey('screenings.id'))
 
 
 class Screenings(db.Model):
@@ -61,8 +61,8 @@ class Screenings(db.Model):
     ticket_id = db.Column(db.Integer, db.ForeignKey('Tickets.id'))
     tickets_sold = db.Column(db.Integer)
     seats_available = db.Column(db.Integer)
-    tickets = db.relationship('Tickets', backref='screening', lazy='dynamic',
-    primaryjoin="Screenings.id==Tickets.screening_id")
+    # tickets = db.relationship('Tickets', backref='screening', lazy='dynamic',
+    # primaryjoin="Screenings.id==Tickets.screening_id")
 
 # class Tickets(db.Model):
 #     __tablename__ = 'Tickets'

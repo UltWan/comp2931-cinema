@@ -33,3 +33,8 @@ body {
     text-align: center;
     background-color: #303133;
 }
+h2 {
+	color: #FFFFFF;
+	font-family: 'Roboto Slab', serif;
+	font-weight: bold;
+}

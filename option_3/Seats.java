@@ -390,13 +390,41 @@ gridPane.setHalignment(button100,HPos.RIGHT);
 
 //---------------------------------------------------------------------------------------
 
+button.setOnAction((ActionEvent e) -> {
+    button.getStyleClass().removeAll("addBobOk, focus");
+    //In this way you're sure you have no styles applied to your object button
+    button.getStyleClass().add("addBobOk");
+    //then you specify the class you would give to the button
+}
 
+//-----------------------------------CSS--------------------------------------
+.addBobOk{
+        -fx-background-color:#90EE90;
+        -fx-background-radius: 5,5,4;
+        -fx-background-insets: 0 0 -1 0,0,1;
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+        -fx-text-alignment: center;
+}
+.addBobOk:hover{
 
+        -fx-background-color:#64EE64;
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+        -fx-text-alignment: center;
+}
+.busy{
 
-        Scene scene = new Scene(gridPane, 550, 550);
+        -fx-background-color:#B3B3B3;
+        -fx-text-alignment: center;
+}
+.busy:hover{
 
+        -fx-background-color:cdcbcb;
+        -fx-text-alignment: center;
+}
+//--------------------------------------------------END OF CSS-------------------------
+
+        Scene scene = new Scene(gridPane, 550, 550);//size do window
         window.setScene(scene);//create a scene
-
         window.show();//display window
 
     }

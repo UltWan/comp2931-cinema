@@ -37,13 +37,14 @@ def admin():
 		db.session.add(movie)
 		db.session.commit()
 		return redirect(url_for('admin'))
-	
+
 	if addScreeningform.validate_on_submit():
 		screening = models.Screenings(movie=request.form['movie'], screen=request.form['screen'], date=request.form['date'])
+		screening.seats_available = 50
 		db.session.add(screening)
 		db.session.commit()
 		return redirect(url_for('admin'))
-	
+
 	if addScreenform.validate_on_submit():
 		screen = models.Screens()
 		db.session.add(screen)
@@ -67,6 +68,11 @@ def load_demo_data():
 	db.session.add(screen2)
 	db.session.commit()
 	return redirect(url_for('index'))
+
+@app.route('/screenings')
+def allscreenings():
+	movies = models.Movies.query.all()
+	return render_template('allscreenings.html', title='Movies From Database', movies=movies)
 
 @app.route('/screenings/<id>', methods=['GET', 'POST'])
 def screenings(id):
@@ -94,7 +100,7 @@ def purchase(id):
 	if screening!=None:
 		if purchaseTicketform.validate_on_submit():
 			sendmail(request.form['email'], str(request.form['totaltickets']), str(movies[screening.movie-1].title), str(screening.date), str(screening.screen))
-		return render_template('booking.html', title='Purchase tickets', screening=screening, purchaseTicketform=purchaseTicketform)
+		return render_template('booking.html', title='Purchase tickets', screening=screening, purchaseTicketform=purchaseTicketform,movies=movies)
 	else:
 		return redirect(url_for('index'))
 

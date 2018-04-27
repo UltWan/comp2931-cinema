@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block content %}
   <head>
   {% if title %}
       <title>{{ title }}</title>
@@ -8,13 +8,14 @@
       {% endif %}
   </head>
   <body>
+    <div style = "width:50%;margin:auto">
     <h1 style="font-size: 50px">{{ movie.title }}</h1>
-    <div>
+    <img src="{{ url_for('static', filename='images/'+movie.poster) }}" width="50%">
 		<p>Blurb: {{ movie.blurb }}</p>
 		<p>Director: {{ movie.director }}</p>
 		<p>Certificate: {{ movie.certificate }} </p>
     <p><a href="{{ url_for('screenings', id=movie.id) }}"><button type="button">View Screenings</button></a></p>
-    <img src="{{ url_for('static', filename='images/'+movie.poster) }}" width="20%">
+
     </div>
   </body>
-</html>
+{% endblock %}

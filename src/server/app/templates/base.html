@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+<!-- <link rel="stylesheet" href="static/styles/bootstrap.min.css"> -->
+<link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/bootstrap.min.css') }}">
+<link rel="stylesheet" type= "text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<head>
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title> No title specified</title>
+  {% endif %}
+</head>
+
+<!-- <nav class="navbar navbar-default" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Jackdaw Cinema</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><button class="navbar"><a href="/">Movies</a></button></li>
+
+    </ul>
+  </div>
+</nav> -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">JACKDAW CINEMA</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Movies</a></li>
+      <li><a href="/screenings">Screenings</a></li>
+    </ul>
+
+  </div>
+</nav>
+<body style = "background-color: #161616; color:#FF9E00;font-family: 'Roboto Slab', serif;overflow: scroll">
+<div  >
+
+
+  {% block content %}
+
+  {% endblock %}
+
+  </div>
+
+
+</body>
+</html>

@@ -1,98 +1,92 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  {% if title %}
-      <title>{{ title }}</title>
-      {% else %}
-      <title> No title specified</title>
-      {% endif %}
-   <script src="{{ url_for('static', filename='purchase.js') }}"></script> 
-  </head>
-  <body>
-    <form action="" method="post" name="purchaseTicketform">
-    {{ purchaseTicketform.hidden_tag() }}
-    <TABLE align="center" BORDER="0">
+{% extends "base.html" %}
+{% block content %}
+    <h1 style="font-size: 50px; margin-left: auto; margin-right:auto;width:50%">{{movies[screening.movie-1].title }} Tickets</h1>
+    <div style="width:50%;margin:auto">
+      <form action="" method="post" name="purchaseTicketform">
+      {{ purchaseTicketform.hidden_tag() }}
+      <TABLE BORDER="0">
+        <TR>
+          <TD align="left">Adult Standard Ticket Qty (£10): </TD>
+          <TD align="right">
+          {{ purchaseTicketform.adult_std_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          </TD>
+        </TR>
+        <TR>
+        <TR>
+          <TD align="left">Adult VIP Ticket Qty (£20): </TD>
+          <TD align="right">
+          {{ purchaseTicketform.adult_vip_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          </TD>
+        </TR>
+        <TR>
+          <TD align="left">Student Standard Ticket Qty(£7.5): </TD>
+          <TD align="right">
+          {{ purchaseTicketform.student_std_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          </TD>
+        </TR>
+        <TR>
+          <TD align="left">Student VIP Ticket Qty (£15): </TD>
+          <TD align="right">
+          {{ purchaseTicketform.student_vip_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          </TD>
+        </TR>
+        <TR>
+          <TD align="left">Child Standard Ticket Qty (£6): </TD>
+          <TD align="right">
+          {{ purchaseTicketform.child_std_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          </TD>
+        </TR>
+        <TR>
+          <TD align="left">Child VIP Ticket Qty (£12): </TD>
+          <TD align="right">
+          {{ purchaseTicketform.child_vip_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          </TD>
+        </TR>
+        <TR>
+          <TD align="left">Senior Standard Ticket Qty (£6): </TD>
+          <TD align="right">
+          {{ purchaseTicketform.senior_std_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          </TD>
+        </TR>
+        <TR>
+          <TD align="left">Senior VIP Ticket Qty (£12): </TD>
+          <TD align="right">
+          {{ purchaseTicketform.senior_vip_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          </TD>
+        </TR>
+      <hr>
+        <TR>
+          <TD align="left">Email: </TD>
+          <TD align="right">
+          {{ purchaseTicketform.email }}
+          </TD>
+        </TR>
+      <hr>
       <TR>
-        <TD align="left">Adult Standard Ticket Qty (£10): </TD>
+        <TD align="left">Cardholder Name: </TD>
         <TD align="right">
-        {{ purchaseTicketform.adult_std_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          {{ purchaseTicketform.cardholdern }}
         </TD>
       </TR>
       <TR>
-      <TR>
-        <TD align="left">Adult VIP Ticket Qty (£20): </TD>
+        <TD align="left">Credit Card Number: </TD>
         <TD align="right">
-        {{ purchaseTicketform.adult_vip_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          {{ purchaseTicketform.ccnumber }}
         </TD>
       </TR>
       <TR>
-        <TD align="left">Student Standard Ticket Qty(£7.5): </TD>
+        <TD align="left">Expiry Date: </TD>
+        <TD align="right">{{ purchaseTicketform.expdate }}</TD>
+      </TR>
+        <TD align="left">CVV Number: </TD>
         <TD align="right">
-        {{ purchaseTicketform.student_std_ticket_amt(**{"onchange":"updateTotal()"}) }}
+          {{ purchaseTicketform.cvvnumber }}
         </TD>
       </TR>
-      <TR>
-        <TD align="left">Student VIP Ticket Qty (£15): </TD>
-        <TD align="right">
-        {{ purchaseTicketform.student_vip_ticket_amt(**{"onchange":"updateTotal()"}) }}
-        </TD>
-      </TR>
-      <TR>
-        <TD align="left">Child Standard Ticket Qty (£6): </TD>
-        <TD align="right">
-        {{ purchaseTicketform.child_std_ticket_amt(**{"onchange":"updateTotal()"}) }}
-        </TD>
-      </TR>
-      <TR>
-        <TD align="left">Child VIP Ticket Qty (£12): </TD>
-        <TD align="right">
-        {{ purchaseTicketform.child_vip_ticket_amt(**{"onchange":"updateTotal()"}) }}
-        </TD>
-      </TR>
-      <TR>
-        <TD align="left">Senior Standard Ticket Qty (£6): </TD>
-        <TD align="right">
-        {{ purchaseTicketform.senior_std_ticket_amt(**{"onchange":"updateTotal()"}) }}
-        </TD>
-      </TR>
-      <TR>
-        <TD align="left">Senior VIP Ticket Qty (£12): </TD>
-        <TD align="right">
-        {{ purchaseTicketform.senior_vip_ticket_amt(**{"onchange":"updateTotal()"}) }}
-        </TD>
-      </TR>
-    <hr>
-      <TR>
-        <TD align="left">Email: </TD>
-        <TD align="right">
-        {{ purchaseTicketform.email }}
-        </TD>
-      </TR>    
-    <hr>
-    <TR>
-      <TD align="left">Cardholder Name: </TD>
-      <TD align="right">
-        {{ purchaseTicketform.cardholdern }}
-      </TD>
-    </TR>    
-    <TR>
-      <TD align="left">Credit Card Number: </TD>
-      <TD align="right">
-        {{ purchaseTicketform.ccnumber }}
-      </TD>
-    </TR>
-    <TR>
-      <TD align="left">Expiry Date: </TD>
-      <TD align="right">{{ purchaseTicketform.expdate }}</TD>
-    </TR>
-      <TD align="left">CVV Number: </TD>
-      <TD align="right">
-        {{ purchaseTicketform.cvvnumber }}
-      </TD>
-    </TR>
-    </TABLE>
-      <h3 id="price">Price: £0.00</h3>
-      <p><input type="submit" value="Purchase Tickets"></p>
-    </form>
-  </body>
-</html>
+      </TABLE>
+        <h3 id="price">Price: £0.00</h3>
+        <p><input type="submit" value="Purchase Tickets"></p>
+      </form>
+    </div>
+
+{% endblock %}

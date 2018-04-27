@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
   {% if title %}
@@ -6,90 +6,100 @@
   {% else %}
     <title> No title specified</title>
   {% endif %}
-</head>
+</head> -->
+{% extends "base.html" %}
+{% block content %}
+
 <body>
-  <h1>Add Movie</h1>
-  <form action="" method="post" name="AddMovie" enctype="multipart/form-data">
-  {{ addMovieform.hidden_tag() }}
-  <TABLE align="center" BORDER="0">
-    <TR>
-      <TD align="left">Title: </TD>
-      <TD align="right">
-        {{ addMovieform.title }}
-      </TD>
-    </TR>
-    <TR>
-      <TD align="left">Blurb: </TD>
-      <TD align="right">
-        {{ addMovieform.blurb }}
-      </TD>
-    </TR>
-    <TR>
-      <TD align="left">Certificate: </TD>
-      <TD align="right">
-        {{ addMovieform.certificate }}
-      </TD>
-    </TR>
-    <TR>
-      <TD align="left">Director: </TD>
-      <TD align="right">
-        {{ addMovieform.director }}
-      </TD>
-    </TR>
-    <TR>
-      <TD align="left">Duration: </TD>
-      <TD align="right">
-        {{ addMovieform.duration }}
-      </TD>
-      </TR>
+  <div style="width:90%; margin-left: auto; margin-right:auto">
+    <div style="width:33%; float:right">
+    <h1>Add Movie</h1>
+    <form action="" method="post" name="AddMovie" enctype="multipart/form-data" >
+    {{ addMovieform.hidden_tag() }}
+    <TABLE  BORDER="0">
       <TR>
-        <TD align="left">Poster: </TD>
+        <TD align="left">Title: </TD>
         <TD align="right">
-          {{ addMovieform.poster }}
-        </TD>
-      </TR>
-    </TABLE>
-    <p><input type="submit" value="Add Movie"></p>
-  </form>
-
-  <h1>Screenings</h1>
-  {% for screening in screenings %}
-    <p>Movie: {{ movies[screening.movie-1].title }}</p>
-    <p>Screen: {{ screening.screen }}</p>
-    <p>Date: {{ screening.date }}</p>
-  {% endfor %}
-
-  <h1>Add Screening</h1>
-  <form action="" method="post" name="AddScreening">
-    {{ addScreeningform.hidden_tag() }}
-    <TABLE align="center" BORDER="0">
-      <TR>
-        <TD align="left">Movie: </TD>
-        <TD align="right">
-        {{ addScreeningform.movie }}
+          {{ addMovieform.title }}
         </TD>
       </TR>
       <TR>
-        <TD align="left">Screen: </TD>
-        <TD align="right">{{ addScreeningform.screen }}</TD>
+        <TD align="left">Blurb: </TD>
+        <TD align="right">
+          {{ addMovieform.blurb }}
+        </TD>
       </TR>
       <TR>
-        <TD align="left">Date(d/m/YYYY): </TD>
-        <TD align="right">{{ addScreeningform.date }}</TD>
+        <TD align="left">Certificate: </TD>
+        <TD align="right">
+          {{ addMovieform.certificate }}
+        </TD>
       </TR>
-    </TABLE>
-      <p><input type="submit" value="Add Screening"></p>
+      <TR>
+        <TD align="left">Director: </TD>
+        <TD align="right">
+          {{ addMovieform.director }}
+        </TD>
+      </TR>
+      <TR>
+        <TD align="left">Duration: </TD>
+        <TD align="right">
+          {{ addMovieform.duration }}
+        </TD>
+        </TR>
+        <TR>
+          <TD align="left">Poster: </TD>
+          <TD align="right">
+            {{ addMovieform.poster }}
+          </TD>
+        </TR>
+      </TABLE>
+      <p><input type="submit" value="Add Movie"></p>
     </form>
+  </div>
 
-    <h1>Screens</h1>
-    {% for screen in screens %}
-      <h3>Screen {{ screen.id }}</h3>
-    {% endfor %}
+    <div style="width:33%; float:left">
+      <h1>Add Screening</h1>
+      <form action="" method="post" name="AddScreening">
+        {{ addScreeningform.hidden_tag() }}
+        <TABLE align= BORDER="0">
+          <TR>
+            <TD align="left">Movie: </TD>
+            <TD align="right">
+            {{ addScreeningform.movie }}
+            </TD>
+          </TR>
+          <TR>
+            <TD align="left">Screen: </TD>
+            <TD align="right">{{ addScreeningform.screen }}</TD>
+          </TR>
+          <TR>
+            <TD align="left">Date(d/m/YYYY): </TD>
+            <TD align="right">{{ addScreeningform.date }}</TD>
+          </TR>
+        </TABLE>
+          <p style="align:centre"><input type="submit" value="Add Screening"></p>
+        </form>
+        <h1>Screenings</h1>
+        {% for screening in screenings %}
+          <p>Movie: {{ movies[screening.movie-1].title }}</p>
+          <p>Screen: {{ screening.screen }}</p>
+          <p>Date: {{ screening.date }}</p>
+        {% endfor %}
+    </div>
 
-    <h1>Add Screen</h1>
-    <form action="" method="post" name="AddScreen">
-      {{ addScreenform.hidden_tag() }}
-      <p>{{ addScreenform.newscreen }}</p>
-    </form>
+    <div style="width:33%; float:left">
+      <h1>Add Screen</h1>
+      <form action="" method="post" name="AddScreen">
+        {{ addScreenform.hidden_tag() }}
+        <p>{{ addScreenform.newscreen }}</p>
+      </form>
+      <h1>Screens</h1>
+      {% for screen in screens %}
+        <h3>Screen {{ screen.id }}</h3>
+      {% endfor %}
+    </div>
+  </div>
   </body>
-</html>
+{% endblock %}
+<!-- </html> -->

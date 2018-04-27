@@ -20,6 +20,7 @@ class Screenings(db.Model):
     tickets_sold = db.Column(db.Integer)
     seats_available = db.Column(db.Integer)
     date = db.Column(db.String(13))
+    
 
 class Tickets(db.Model):
     id = db.Column(db.Integer, primary_key=True)

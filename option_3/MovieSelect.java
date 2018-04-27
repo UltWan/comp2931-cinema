@@ -17,19 +17,24 @@ public class MovieSelect extends Application {
   private PreparedStatement prepStatementScreen;
   private Label lblConfirm = new Label();
   private TextField tfCert = new TextField();
-  private TextField tfScreen = new TextField();
+  public TextField tfScreen = new TextField();
   private Connection connection;
   private ObservableList<String> movieList = FXCollections.observableArrayList();
   private ObservableList<String> timeList = FXCollections.observableArrayList();
-  private ComboBox<String> movieComboBox = new ComboBox<>(movieList);
-  private ComboBox<String> timeComboBox = new ComboBox<>(timeList);
+  public ComboBox<String> movieComboBox = new ComboBox<>(movieList);
+  public ComboBox<String> timeComboBox = new ComboBox<>(timeList);
+  public Stage primaryStage;
+  public Scene scene2;
 
   @Override
   public void start(Stage primaryStage) {
+    this.primaryStage = primaryStage;
+
     initialiseDB();
     fillMovieComboBox();
 
     Button btSelectMovie = new Button("Select Movie");
+    Button btPayment = new Button("Payment");
     tfCert.setEditable(false);
     tfScreen.setEditable(false);
 
@@ -38,7 +43,8 @@ public class MovieSelect extends Application {
     hBox.getChildren().addAll(new Label("Movie: "), movieComboBox,
                               new Label("Certificate: "),tfCert,
                               new Label("Time: "), timeComboBox,
-                              new Label("Screen: "),tfScreen, btSelectMovie);
+                              new Label("Screen: "),tfScreen, btSelectMovie,
+                              btPayment);
 
     VBox vBox = new VBox(10);
     vBox.getChildren().addAll(hBox, lblConfirm);
@@ -96,11 +102,20 @@ public class MovieSelect extends Application {
       }
     });
     btSelectMovie.setOnAction(e -> movieSelection());
+    btPayment.setOnAction(e -> changeScenes());
 
     Scene scene = new Scene (vBox, 750, 250);
     primaryStage.setTitle("Movie Listings");
     primaryStage.setScene(scene);
     primaryStage.show();
+  }
+
+  public void changeScenes() {
+    Cash cash = new Cash();
+    Scene scene2 = cash.getCash();
+
+    primaryStage.setTitle("Price of Tickets");
+    primaryStage.setScene(scene2);
   }
 
   //connects to database file via sqlite

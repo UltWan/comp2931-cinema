@@ -1,86 +1,108 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField ;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-public class Login extends Application {
+public class Login implements Controller {
+  private final Scene root;
 
-    Button signin,cancel;
-    TextField usernametext;
-    PasswordField Password;
-    Label error,labelUsername,labelPassword;
-    int index;
-    String[] user = new String[20];
-    String[] pass = new String[20];
+  private Stage primaryStage;
+  String user = "Joao";
+  String pass = "jackdaw1";
+  String user1 = "Ryan";
+  String pass1 = "jackdaw2";
+  String user2 = "Nick";
+  String pass2 = "jackdaw3";
+  String user3 = "Antonis";
+  String pass3 = "jackdaw4";
+  String user4 = "Clesio";
+  String pass4 = "jackdaw5";
 
+  String checkUser, checkPw;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    this.primaryStage = primaryStage;
 
-    @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Login ");
+    primaryStage.setTitle("Login");
 
+    BorderPane border = new BorderPane();
 
-        signin = new Button();
-        signin.setText("Log in");
+    border.setPadding(new Insets(50,50,50,50));
 
-        cancel = new Button();
-        cancel.setText("Cancel");
+    HBox box = new HBox();
 
-        usernametext=new TextField();
-        usernametext.setMaxWidth(200);
+    box.setPadding(new Insets(20,20,20,30));
 
-        Password=new PasswordField();
-        Password.setMaxWidth(200);
+    GridPane gridPane = new GridPane();
+    gridPane.setPadding(new Insets(20,20,20,20));
 
-        labelUsername=new Label();
-        labelUsername.setText("Username");
+    gridPane.setHgap(5);
+    gridPane.setVgap(5);
 
-        labelPassword=new Label();
-        labelPassword.setText("Password");
+    Label labelusername = new Label("Username");
+    TextField txtUserName = new TextField();
 
-       signin.setOnAction(e ->{
-           if (index < 15 ){
-            index++;
-            user[index]=usernametext.getText();
-            pass[index]=Password.getText();
+    Label labelpassword = new Label("Password");
+    PasswordField pf = new PasswordField();
 
+    Button btnLogin = new Button("Login");
+    Label confirm = new Label();
 
-           usernametext.clear();
-           Password.clear();
-       }else{
+    gridPane.add(labelusername, 0, 0);
+    gridPane.add(txtUserName, 1, 0);
+    gridPane.add(labelpassword, 0, 1);
+    gridPane.add(pf, 1, 1);
+    gridPane.add(btnLogin, 2, 1);
+    gridPane.add(confirm, 1, 2);
 
-       }
-       });
-
-      //  cancel.setOnAction(e ->{
-      //      for (int c = 0; c < 15; c++)
-      //      {
-      //     if ((user[c] == usernametext.getText()) && (pass[c] == Password.getText())){
-      //           //  error.display("good");
-      //           }
-      //     else{
-      //       //  error.display( "missing words");
-      //       }
-      //   }
-      //});
+    Text text = new Text("Login");
+    text.setFont(Font.font("Courier New", FontWeight.BOLD, 25));
+    box.getChildren().add(text);
 
 
-        VBox layout = new VBox();
-        layout.getChildren().addAll(labelUsername,usernametext,labelPassword,Password,signin,cancel);
-        Scene scene = new Scene(layout, 300, 250);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
+    btnLogin.setOnAction(e -> {
+        checkUser = txtUserName.getText().toString();
+        checkPw = pf.getText().toString();
+        if(checkUser.equals(user) && checkPw.equals(pass) || checkUser.equals(user1) && checkPw.equals(pass1)||checkUser.equals(user2) && checkPw.equals(pass2) ||checkUser.equals(user3) && checkPw.equals(pass3) ||checkUser.equals(user4) && checkPw.equals(pass4)){
+          confirm.setText("Welcome family!!!");
+          confirm.setTextFill(Color.GREEN);
 
+          changeScenes();
+        }
+        else{
+          confirm.setText("Incorrect user or pass.you only have 5 attempts");
+          confirm.setTextFill(Color.RED);
+        }
+        txtUserName.setText("");
+        pf.setText("");
+      });
 
+    border.setTop(box);
+    border.setCenter(gridPane);
+    Scene scene = new Scene(border);
+    primaryStage.setScene(scene);
+    primaryStage.show();
+
+  @Override
+  public Parent getContent() {
+      return root;
+  }
+
+  private void changeScenes() {
+    Controller2 controller2 = new Controller2();
+    navToSecond.getScene().setRoot(controller2.getContent());
+  }
 }

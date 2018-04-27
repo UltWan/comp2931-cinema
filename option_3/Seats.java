@@ -447,8 +447,6 @@ public class Seats extends Application implements EventHandler<ActionEvent> {
   button95.setOnAction(this::handle);  button96.setOnAction(this::handle);
   button97.setOnAction(this::handle);  button98.setOnAction(this::handle);
   button99.setOnAction(this::handle);  button100.setOnAction(this::handle);
-  button11.setOnAction(this::handle);
-
 
   //------------------------END OF ACTION CATCHERS
   Scene scene = new Scene(gridPane, 750, 750);//size do window
@@ -487,210 +485,212 @@ public void handle(ActionEvent event){
     }
 
     if(event.getSource()==button11){//IF Any SEAT IS SELECTED
-      System.out.println("Seat 11 Has been selected");
+      System.out.println("Seat B1 Has been selected");
     }
     if(event.getSource()==button12){//IF Any SEAT IS SELECTED
-      System.out.println("Seat 12 Has been selected");
-    }if(event.getSource()==button3){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A3 Has been selected");
-    }if(event.getSource()==button4){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A4 Has been selected");
-    }if(event.getSource()==button5){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A5 Has been selected");
-    }if(event.getSource()==button6){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A6 Has been selected");
-    }if(event.getSource()==button7){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A7 Has been selected");
-    }if(event.getSource()==button8){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A8 Has been selected");
-    }if(event.getSource()==button9){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A9 Has been selected");
-    }if(event.getSource()==button10){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A10 Has been selected");
+      System.out.println("Seat B2 Has been selected");
+    }if(event.getSource()==button13){//IF Any SEAT IS SELECTED
+      System.out.println("Seat B3 Has been selected");
+    }if(event.getSource()==button14){//IF Any SEAT IS SELECTED
+      System.out.println("Seat B4 Has been selected");
+    }if(event.getSource()==button15){//IF Any SEAT IS SELECTED
+      System.out.println("Seat B5 Has been selected");
+    }if(event.getSource()==button16){//IF Any SEAT IS SELECTED
+      System.out.println("Seat B6 Has been selected");
+    }if(event.getSource()==button17){//IF Any SEAT IS SELECTED
+      System.out.println("Seat B7 Has been selected");
+    }if(event.getSource()==button18){//IF Any SEAT IS SELECTED
+      System.out.println("Seat B8 Has been selected");
+    }if(event.getSource()==button19){//IF Any SEAT IS SELECTED
+      System.out.println("Seat B9 Has been selected");
+    }if(event.getSource()==button20){//IF Any SEAT IS SELECTED
+      System.out.println("Seat B10 Has been selected");
     }
 
-    if(event.getSource()==button1){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A1 Has been selected");
+    if(event.getSource()==button21){//IF Any SEAT IS SELECTED
+      System.out.println("Seat C1 Has been selected");
     }
-    if(event.getSource()==button2){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A2 Has been selected");
-    }if(event.getSource()==button3){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A3 Has been selected");
-    }if(event.getSource()==button4){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A4 Has been selected");
-    }if(event.getSource()==button5){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A5 Has been selected");
-    }if(event.getSource()==button6){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A6 Has been selected");
-    }if(event.getSource()==button7){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A7 Has been selected");
-    }if(event.getSource()==button8){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A8 Has been selected");
-    }if(event.getSource()==button9){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A9 Has been selected");
-    }if(event.getSource()==button10){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A10 Has been selected");
-    }
-
-    if(event.getSource()==button1){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A1 Has been selected");
-    }
-    if(event.getSource()==button2){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A2 Has been selected");
-    }if(event.getSource()==button3){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A3 Has been selected");
-    }if(event.getSource()==button4){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A4 Has been selected");
-    }if(event.getSource()==button5){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A5 Has been selected");
-    }if(event.getSource()==button6){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A6 Has been selected");
-    }if(event.getSource()==button7){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A7 Has been selected");
-    }if(event.getSource()==button8){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A8 Has been selected");
-    }if(event.getSource()==button9){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A9 Has been selected");
-    }if(event.getSource()==button10){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A10 Has been selected");
+    if(event.getSource()==button22){//IF Any SEAT IS SELECTED
+      System.out.println("Seat C2 Has been selected");
+    }if(event.getSource()==button23){//IF Any SEAT IS SELECTED
+      System.out.println("Seat C3 Has been selected");
+    }if(event.getSource()==button24){//IF Any SEAT IS SELECTED
+      System.out.println("Seat C4 Has been selected");
+    }if(event.getSource()==button25){//IF Any SEAT IS SELECTED
+      System.out.println("Seat C5 Has been selected");
+    }if(event.getSource()==button26){//IF Any SEAT IS SELECTED
+      System.out.println("Seat C6 Has been selected");
+    }if(event.getSource()==button27){//IF Any SEAT IS SELECTED
+      System.out.println("Seat C7 Has been selected");
+    }if(event.getSource()==button28){//IF Any SEAT IS SELECTED
+      System.out.println("Seat C8 Has been selected");
+    }if(event.getSource()==button29){//IF Any SEAT IS SELECTED
+      System.out.println("Seat C9 Has been selected");
+    }if(event.getSource()==button30){//IF Any SEAT IS SELECTED
+      System.out.println("Seat C10 Has been selected");
     }
 
-    if(event.getSource()==button1){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A1 Has been selected");
+
+
+    if(event.getSource()==button31){//IF Any SEAT IS SELECTED
+      System.out.println("Seat D1 Has been selected");
     }
-    if(event.getSource()==button2){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A2 Has been selected");
-    }if(event.getSource()==button3){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A3 Has been selected");
-    }if(event.getSource()==button4){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A4 Has been selected");
-    }if(event.getSource()==button5){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A5 Has been selected");
-    }if(event.getSource()==button6){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A6 Has been selected");
-    }if(event.getSource()==button7){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A7 Has been selected");
-    }if(event.getSource()==button8){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A8 Has been selected");
-    }if(event.getSource()==button9){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A9 Has been selected");
-    }if(event.getSource()==button10){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A10 Has been selected");
+    if(event.getSource()==button32){//IF Any SEAT IS SELECTED
+      System.out.println("Seat D2 Has been selected");
+    }if(event.getSource()==button33){//IF Any SEAT IS SELECTED
+      System.out.println("Seat D3 Has been selected");
+    }if(event.getSource()==button34){//IF Any SEAT IS SELECTED
+      System.out.println("Seat D4 Has been selected");
+    }if(event.getSource()==button35){//IF Any SEAT IS SELECTED
+      System.out.println("Seat D5 Has been selected");
+    }if(event.getSource()==button36){//IF Any SEAT IS SELECTED
+      System.out.println("Seat D6 Has been selected");
+    }if(event.getSource()==button37){//IF Any SEAT IS SELECTED
+      System.out.println("Seat D7 Has been selected");
+    }if(event.getSource()==button38){//IF Any SEAT IS SELECTED
+      System.out.println("Seat D8 Has been selected");
+    }if(event.getSource()==button39){//IF Any SEAT IS SELECTED
+      System.out.println("Seat D9 Has been selected");
+    }if(event.getSource()==button40){//IF Any SEAT IS SELECTED
+      System.out.println("Seat D10 Has been selected");
     }
 
-    if(event.getSource()==button1){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A1 Has been selected");
+    if(event.getSource()==button41){//IF Any SEAT IS SELECTED
+      System.out.println("Seat E1 Has been selected");
     }
-    if(event.getSource()==button2){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A2 Has been selected");
-    }if(event.getSource()==button3){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A3 Has been selected");
-    }if(event.getSource()==button4){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A4 Has been selected");
-    }if(event.getSource()==button5){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A5 Has been selected");
-    }if(event.getSource()==button6){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A6 Has been selected");
-    }if(event.getSource()==button7){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A7 Has been selected");
-    }if(event.getSource()==button8){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A8 Has been selected");
-    }if(event.getSource()==button9){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A9 Has been selected");
-    }if(event.getSource()==button10){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A10 Has been selected");
-    }
-
-    if(event.getSource()==button1){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A1 Has been selected");
-    }
-    if(event.getSource()==button2){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A2 Has been selected");
-    }if(event.getSource()==button3){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A3 Has been selected");
-    }if(event.getSource()==button4){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A4 Has been selected");
-    }if(event.getSource()==button5){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A5 Has been selected");
-    }if(event.getSource()==button6){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A6 Has been selected");
-    }if(event.getSource()==button7){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A7 Has been selected");
-    }if(event.getSource()==button8){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A8 Has been selected");
-    }if(event.getSource()==button9){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A9 Has been selected");
-    }if(event.getSource()==button10){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A10 Has been selected");
+    if(event.getSource()==button42){//IF Any SEAT IS SELECTED
+      System.out.println("Seat E2 Has been selected");
+    }if(event.getSource()==button43){//IF Any SEAT IS SELECTED
+      System.out.println("Seat E3 Has been selected");
+    }if(event.getSource()==button44){//IF Any SEAT IS SELECTED
+      System.out.println("Seat E4 Has been selected");
+    }if(event.getSource()==button45){//IF Any SEAT IS SELECTED
+      System.out.println("Seat E5 Has been selected");
+    }if(event.getSource()==button46){//IF Any SEAT IS SELECTED
+      System.out.println("Seat E6 Has been selected");
+    }if(event.getSource()==button47){//IF Any SEAT IS SELECTED
+      System.out.println("Seat E7 Has been selected");
+    }if(event.getSource()==button48){//IF Any SEAT IS SELECTED
+      System.out.println("Seat E8 Has been selected");
+    }if(event.getSource()==button49){//IF Any SEAT IS SELECTED
+      System.out.println("Seat E9 Has been selected");
+    }if(event.getSource()==button50){//IF Any SEAT IS SELECTED
+      System.out.println("Seat E10 Has been selected");
     }
 
-    if(event.getSource()==button1){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A1 Has been selected");
+    if(event.getSource()==button51){//IF Any SEAT IS SELECTED
+      System.out.println("Seat F1 Has been selected");
     }
-    if(event.getSource()==button2){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A2 Has been selected");
-    }if(event.getSource()==button3){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A3 Has been selected");
-    }if(event.getSource()==button4){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A4 Has been selected");
-    }if(event.getSource()==button5){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A5 Has been selected");
-    }if(event.getSource()==button6){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A6 Has been selected");
-    }if(event.getSource()==button7){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A7 Has been selected");
-    }if(event.getSource()==button8){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A8 Has been selected");
-    }if(event.getSource()==button9){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A9 Has been selected");
-    }if(event.getSource()==button10){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A10 Has been selected");
-    }
-
-    if(event.getSource()==button1){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A1 Has been selected");
-    }
-    if(event.getSource()==button2){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A2 Has been selected");
-    }if(event.getSource()==button3){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A3 Has been selected");
-    }if(event.getSource()==button4){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A4 Has been selected");
-    }if(event.getSource()==button5){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A5 Has been selected");
-    }if(event.getSource()==button6){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A6 Has been selected");
-    }if(event.getSource()==button7){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A7 Has been selected");
-    }if(event.getSource()==button8){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A8 Has been selected");
-    }if(event.getSource()==button9){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A9 Has been selected");
-    }if(event.getSource()==button10){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A10 Has been selected");
+    if(event.getSource()==button52){//IF Any SEAT IS SELECTED
+      System.out.println("Seat F2 Has been selected");
+    }if(event.getSource()==button53){//IF Any SEAT IS SELECTED
+      System.out.println("Seat F3 Has been selected");
+    }if(event.getSource()==button54){//IF Any SEAT IS SELECTED
+      System.out.println("Seat F4 Has been selected");
+    }if(event.getSource()==button55){//IF Any SEAT IS SELECTED
+      System.out.println("Seat F5 Has been selected");
+    }if(event.getSource()==button56){//IF Any SEAT IS SELECTED
+      System.out.println("Seat F6 Has been selected");
+    }if(event.getSource()==button57){//IF Any SEAT IS SELECTED
+      System.out.println("Seat F7 Has been selected");
+    }if(event.getSource()==button58){//IF Any SEAT IS SELECTED
+      System.out.println("Seat F8 Has been selected");
+    }if(event.getSource()==button59){//IF Any SEAT IS SELECTED
+      System.out.println("Seat F9 Has been selected");
+    }if(event.getSource()==button60){//IF Any SEAT IS SELECTED
+      System.out.println("Seat F10 Has been selected");
     }
 
-    if(event.getSource()==button1){//IF Any SEAT IS SELECTED
+    if(event.getSource()==button61){//IF Any SEAT IS SELECTED
+      System.out.println("Seat G1 Has been selected");
+    }
+    if(event.getSource()==button62){//IF Any SEAT IS SELECTED
+      System.out.println("Seat G2 Has been selected");
+    }if(event.getSource()==button63){//IF Any SEAT IS SELECTED
+      System.out.println("Seat G3 Has been selected");
+    }if(event.getSource()==button64){//IF Any SEAT IS SELECTED
+      System.out.println("Seat G4 Has been selected");
+    }if(event.getSource()==button65){//IF Any SEAT IS SELECTED
+      System.out.println("Seat G5 Has been selected");
+    }if(event.getSource()==button66){//IF Any SEAT IS SELECTED
+      System.out.println("Seat G6 Has been selected");
+    }if(event.getSource()==button67){//IF Any SEAT IS SELECTED
+      System.out.println("Seat G7 Has been selected");
+    }if(event.getSource()==button68){//IF Any SEAT IS SELECTED
+      System.out.println("Seat G8 Has been selected");
+    }if(event.getSource()==button69){//IF Any SEAT IS SELECTED
+      System.out.println("Seat G9 Has been selected");
+    }if(event.getSource()==button70){//IF Any SEAT IS SELECTED
+      System.out.println("Seat G10 Has been selected");
+    }
+
+    if(event.getSource()==button71){//IF Any SEAT IS SELECTED
+      System.out.println("Seat H1 Has been selected");
+    }
+    if(event.getSource()==button72){//IF Any SEAT IS SELECTED
+      System.out.println("Seat H2 Has been selected");
+    }if(event.getSource()==button73){//IF Any SEAT IS SELECTED
+      System.out.println("Seat H3 Has been selected");
+    }if(event.getSource()==button74){//IF Any SEAT IS SELECTED
+      System.out.println("Seat H4 Has been selected");
+    }if(event.getSource()==button75){//IF Any SEAT IS SELECTED
+      System.out.println("Seat H5 Has been selected");
+    }if(event.getSource()==button76){//IF Any SEAT IS SELECTED
+      System.out.println("Seat H6 Has been selected");
+    }if(event.getSource()==button77){//IF Any SEAT IS SELECTED
+      System.out.println("Seat H7 Has been selected");
+    }if(event.getSource()==button78){//IF Any SEAT IS SELECTED
+      System.out.println("Seat H8 Has been selected");
+    }if(event.getSource()==button79){//IF Any SEAT IS SELECTED
+      System.out.println("Seat H9 Has been selected");
+    }if(event.getSource()==button80){//IF Any SEAT IS SELECTED
+      System.out.println("Seat H10 Has been selected");
+    }
+
+    if(event.getSource()==button81){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I1 Has been selected");
+    }
+    if(event.getSource()==button82){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I2 Has been selected");
+    }if(event.getSource()==button83){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I3 Has been selected");
+    }if(event.getSource()==button84){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I4 Has been selected");
+    }if(event.getSource()==button85){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I5 Has been selected");
+    }if(event.getSource()==button86){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I6 Has been selected");
+    }if(event.getSource()==button87){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I7 Has been selected");
+    }if(event.getSource()==button88){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I8 Has been selected");
+    }if(event.getSource()==button89){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I9 Has been selected");
+    }if(event.getSource()==button90){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I10 Has been selected");
+    }
+
+    if(event.getSource()==button91){//IF Any SEAT IS SELECTED
       System.out.println("Seat A1 Has been selected");
     }
-    if(event.getSource()==button2){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A2 Has been selected");
-    }if(event.getSource()==button3){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A3 Has been selected");
-    }if(event.getSource()==button4){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A4 Has been selected");
-    }if(event.getSource()==button5){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A5 Has been selected");
-    }if(event.getSource()==button6){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A6 Has been selected");
-    }if(event.getSource()==button7){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A7 Has been selected");
-    }if(event.getSource()==button8){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A8 Has been selected");
-    }if(event.getSource()==button9){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A9 Has been selected");
-    }if(event.getSource()==button10){//IF Any SEAT IS SELECTED
-      System.out.println("Seat A10 Has been selected");
+    if(event.getSource()==button92){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I2 Has been selected");
+    }if(event.getSource()==button93){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I3 Has been selected");
+    }if(event.getSource()==button94){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I4 Has been selected");
+    }if(event.getSource()==button95){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I5 Has been selected");
+    }if(event.getSource()==button96){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I6 Has been selected");
+    }if(event.getSource()==button97){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I7 Has been selected");
+    }if(event.getSource()==button98){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I8 Has been selected");
+    }if(event.getSource()==button99){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I9 Has been selected");
+    }if(event.getSource()==button100){//IF Any SEAT IS SELECTED
+      System.out.println("Seat I10 Has been selected");
     }
 }/*-------------------------END OF BUTTON HANDLER-----------------------------*/
 

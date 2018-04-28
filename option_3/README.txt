@@ -1,4 +1,4 @@
-How to run MovieSelect:
+How to run the program:
 
-javac MovieSelect.javac
-java -classpath ".:sqlite-jdbc-3.21.0.jar" MovieSelect
+javac Main.javac
+java -classpath ".:sqlite-jdbc-3.21.0.jar" Main

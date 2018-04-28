@@ -9,8 +9,9 @@ public class Main extends Application {
 
   public void start(Stage stage) throws Exception {
     Controller1 controller1 = new Controller1();
-    Scene scene = new Scene(controller1.getContent(), 750, 500, Color.AQUA);
+    Scene scene = new Scene(controller1.getContent(), 700, 500, Color.AQUA);
 
+    stage.setTitle("Jackdaw Cinema Staff System");
     stage.setScene(scene);
     stage.show();
   }

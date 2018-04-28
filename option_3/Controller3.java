@@ -1,176 +1,132 @@
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.sql.*;
 
 public class Controller3 implements Controller {
     private final VBox root;
-    private Stage primaryStage;
-    private PreparedStatement prepStatementTitle;
-    private PreparedStatement prepStatementCert;
-    private PreparedStatement prepStatementTime;
-    private PreparedStatement prepStatementScreen;
-    public Button btSelectMovie = new Button("Select Movie");
-    private Button btPayment = new Button("Payment");
-    public Label lblConfirm = new Label();
-    private TextField tfCert = new TextField();
-    private Connection connection;
-    private ObservableList<String> movieList = FXCollections.observableArrayList();
-    private ObservableList<String> timeList = FXCollections.observableArrayList();
-    public ComboBox<String> movieComboBox = new ComboBox<>(movieList);
-    public ComboBox<String> timeComboBox = new ComboBox<>(timeList);
-    public GridPane gridPane = new GridPane();
-    public TextField tfScreen = new TextField();
-    public Scene scene;
-    public String movie, time, screen;
-
+    private TextField tfAdult = new TextField();
+    private TextField tfChild = new TextField();
+    private TextField tfSenior = new TextField();
+    private TextField tfStudent = new TextField();
+    private TextField tfTotal = new TextField();
+    private TextField tfCashGiven = new TextField();
+    private TextField tfChangeGiven = new TextField();
+    private Button btCalculate1 = new Button("Calculate Total");
+    private Button btCalculate2 = new Button("Calculate Change");
+    public Label lblInfo = new Label();
+    public Label lblTitle = new Label();
+    public Label lblCert = new Label();
+    public Label lblTime = new Label();
+    public Label lblScreen = new Label();
 
     public Controller3() {
-        initialiseDB();
-        fillMovieComboBox();
+      GridPane gridPane = new GridPane();
+      gridPane.setAlignment(Pos.CENTER);
+      gridPane.setHgap(5);
+      gridPane.setVgap(5);
+      gridPane.setPadding(new Insets(15, 15, 15, 15));
+      gridPane.add(new Label("No. Adult:"), 0, 2);
+      gridPane.add(new Label("£ 10.00"), 1, 2);
+      gridPane.add(tfAdult, 2, 2);
+      tfAdult.setText("0");
+      gridPane.add(new Label("No. Child:"), 0, 4);
+      gridPane.add(new Label("£   7.50"), 1, 4);
+      gridPane.add(tfChild, 2, 4);
+      tfChild.setText("0");
+      gridPane.add(new Label("No. Senior:"), 0, 6);
+      gridPane.add(new Label("£   8.00"), 1, 6);
+      gridPane.add(tfSenior, 2, 6);
+      tfSenior.setText("0");
+      gridPane.add(new Label("No. Student:"), 0, 8);
+      gridPane.add(new Label("£   8.00"), 1, 8);
+      gridPane.add(tfStudent, 2, 8);
+      tfStudent.setText("0");
+      gridPane.add(new Label("Tickets Total:"), 0, 10);
+      gridPane.add(tfTotal, 2, 10);
+      gridPane.add(btCalculate1, 2, 12);
+      gridPane.add(new Label("Cash Given:"), 0, 16);
+      gridPane.add(tfCashGiven, 2, 16);
+      tfCashGiven.setText("0");
+      gridPane.add(new Label("Change Given:"), 0, 20);
+      gridPane.add(tfChangeGiven, 2, 20);
+      gridPane.add(btCalculate2, 2, 22);
+      //gridPane.Vbox(1);
 
-        GridPane gridPane = new GridPane();
-        gridPane.setAlignment(Pos.CENTER);
-        gridPane.setPadding(new Insets(20,20,20,20));
+      //Set properties for UI
+      gridPane.setAlignment(Pos.CENTER);
+      tfAdult.setAlignment(Pos.BOTTOM_RIGHT);
+      tfChild.setAlignment(Pos.BOTTOM_RIGHT);
+      tfSenior.setAlignment(Pos.BOTTOM_RIGHT);
+      tfStudent.setAlignment(Pos.BOTTOM_RIGHT);
+      tfTotal.setAlignment(Pos.BOTTOM_RIGHT);
+      GridPane.setHalignment(btCalculate1, HPos.RIGHT);
+      GridPane.setHalignment(btCalculate2, HPos.RIGHT);
+      tfCashGiven.setAlignment(Pos.BOTTOM_RIGHT);
+      tfChangeGiven.setAlignment(Pos.BOTTOM_RIGHT);
+      tfTotal.setEditable(false);
+      tfChangeGiven.setEditable(false);
 
-        gridPane.setHgap(5);
-        gridPane.setVgap(5);
+      //Actions for button presses
+      btCalculate1.setOnAction(e -> calculateTotal());
+      btCalculate2.setOnAction(e -> calculateChangeGiven());
 
-        gridPane.add(movieComboBox, 0, 0);
-        gridPane.add(tfCert, 1, 0);
-        gridPane.add(timeComboBox, 0, 1);
-        gridPane.add(tfScreen, 1, 1);
-        gridPane.add(btSelectMovie, 2, 1);
-        gridPane.add(lblConfirm, 0, 2);
+      Button btPrint = new Button("Generate PDF");
 
-        tfCert.setEditable(false);
-        tfScreen.setEditable(false);
+      btPrint.setOnMouseClicked(event -> {
+          ControllerTest controllerTest = new ControllerTest();
+          btPrint.getScene().setRoot(controllerTest.getContent());
+      });
 
-        tfCert.setPrefColumnCount(3);
-        tfScreen.setPrefColumnCount(2);
+      root = new VBox (lblInfo, gridPane, btPrint);
+      root.setAlignment(Pos.CENTER);
+  }
 
-        // fills certificate field and time combobox with values corresponding to
-        // the movie selected
-        movieComboBox.setOnAction(e-> {
-          try {
-            String queryCert = "SELECT title, certificate FROM movies WHERE title = ?";
-            prepStatementCert = connection.prepareStatement(queryCert);
-            prepStatementCert.setString
-              (1,(String)movieComboBox.getSelectionModel().getSelectedItem());
-            ResultSet rsetCert = prepStatementCert.executeQuery();
+    private void calculateTotal() {
+      int adult = Integer.parseInt(tfAdult.getText());
+      int child = Integer.parseInt(tfChild.getText());
+      int senior = Integer.parseInt(tfSenior.getText());
+      int student = Integer.parseInt(tfStudent.getText());
+      double cash = Double.parseDouble(tfCashGiven.getText());
 
-            String queryTime = "SELECT title, time FROM schedule WHERE title = ?";
-            prepStatementTime = connection.prepareStatement(queryTime);
-            prepStatementTime.setString
-              (1,(String)movieComboBox.getSelectionModel().getSelectedItem());
-            ResultSet rsetTime = prepStatementTime.executeQuery();
+      Transaction transaction = new Transaction(adult, child, senior, student, cash);
 
-            tfCert.setText(rsetCert.getString("certificate"));
-            timeList.clear();
+      tfTotal.setText(String.format("£%.2f", transaction.getTotal()));
+    }
 
-            while(rsetTime.next()) {
-              timeList.add(rsetTime.getString("time"));
-            }
+    private void calculateChangeGiven() {
+      int adult = Integer.parseInt(tfAdult.getText());
+      int child = Integer.parseInt(tfChild.getText());
+      int senior = Integer.parseInt(tfSenior.getText());
+      int student = Integer.parseInt(tfStudent.getText());
+      double cash = Double.parseDouble(tfCashGiven.getText());
+      Transaction transaction = new Transaction(adult, child, senior, student, cash);
 
-            tfScreen.setText("");
-            lblConfirm.setText("");
-          }
-          catch (SQLException ex) {
-            ex.printStackTrace();
-          }
-        });
-
-        //screen TextField is filled after time is selected
-        timeComboBox.setOnAction(e-> {
-          try {
-            String queryScreen = "SELECT title, time, theatre_num FROM schedule WHERE title = ? and time = ?";
-            prepStatementScreen = connection.prepareStatement(queryScreen);
-            prepStatementScreen.setString
-              (1,(String)movieComboBox.getSelectionModel().getSelectedItem());
-            prepStatementScreen.setString
-              (2,(String)timeComboBox.getSelectionModel().getSelectedItem());
-            ResultSet rsetScreen = prepStatementScreen.executeQuery();
-
-            lblConfirm.setText("");
-            tfScreen.setText(rsetScreen.getString("theatre_num"));
-          }
-          catch (SQLException ex) {
-            ex.printStackTrace();
-          }
-        });
-
-        btSelectMovie.setOnAction(e -> movieSelection());
-
-                root = new VBox(gridPane, btSelectMovie);
-
-            }
-
-
-      //connects to database file via sqlite
-      public void initialiseDB() {
-        try {
-          Class.forName("org.sqlite.JDBC");
-          System.out.println("Driver loaded");
-
-          connection = DriverManager.getConnection("jdbc:sqlite:app.db");
-          System.out.println("Database connected");
-        }
-        catch (Exception ex) {
-          ex.printStackTrace();
-        }
+      if(transaction.getTotal() > cash) {
+        tfChangeGiven.setText("Error: Insufficient Cash");
       }
-
-      // fills movie combobox with movies
-      public void fillMovieComboBox() {
-        try {
-          String queryTitle = "SELECT title FROM movies ORDER BY title";
-          prepStatementTitle = connection.prepareStatement(queryTitle);
-          ResultSet rsetTitle = prepStatementTitle.executeQuery();
-
-          //gets all titles of films found in database file
-          while(rsetTitle.next()) {
-            movieList.add(rsetTitle.getString("title"));
-          }
-        }
-        catch (SQLException ex) {
-          ex.printStackTrace();
-        }
+      else {
+        tfChangeGiven.setText(String.format("£%.2f", transaction.getChangeGiven()));
       }
-
-      // confirmation of selection of movie and time
-      public void movieSelection() {
-          String title = movieComboBox.getValue();
-          String certificate = tfCert.getText();
-          String time = timeComboBox.getValue();
-          String screen = tfScreen.getText();
-
-          try {
-            if (title != null && time != null) {
-              lblConfirm.setText(title + " selected for the " + time +
-                                         ", showing in theatre " + screen);
-
-              Controller4 controller4 = new Controller4();
-              btSelectMovie.getScene().setRoot(controller4.getContent());
-            }
-            else {
-              lblConfirm.setText("Error: Movie or time not selected");
-            }
-          }
-          catch (Exception ex) {
-            ex.printStackTrace();
-          }
-        }
+    }
 
     @Override
     public Parent getContent() {

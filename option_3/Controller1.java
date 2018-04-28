@@ -80,6 +80,7 @@ public class Controller1 implements Controller {
         });
 
         root = new VBox (gridPane, btnLogin);
+        root.setAlignment(Pos.CENTER);
     }
 
     @Override

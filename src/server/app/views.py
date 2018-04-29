@@ -151,6 +151,8 @@ def purchase(id):
 	if screening!=None:
 		if purchaseTicketform.validate_on_submit():
 			sendmail(request.form['email'], str(request.form['totaltickets']), str(movies[screening.movie-1].title), str(screening.date), str(screening.screen))
+			flash('Thank you for booking. Find your tickets at your email')
+			return redirect(url_for('index'))
 		return render_template('booking.html', title='Purchase tickets', screening=screening, purchaseTicketform=purchaseTicketform, movies=movies)
 	else:
 		return redirect(url_for('index'))

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+ {% block content %}
+ <center>
+   <div id="map" style="width:800px;height:600px"></div>
+
+ <script>
+ function myMap() {
+   var mapCanvas = document.getElementById("map");
+   var myCenter = new google.maps.LatLng(53.804811,-1.554625);
+   var mapOptions = {center: myCenter, zoom: 18};
+   var map = new google.maps.Map(mapCanvas,mapOptions);
+   var marker = new google.maps.Marker({
+     position: myCenter,
+     label: {
+     color: 'black',
+     fontWeight: 'bold',
+     text: 'JACKDAW CINEMA',
+   },
+   });
+   marker.setMap(map);
+ }
+ </script>
+
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAebCOD0L8piu6ApctUQWb2vO8cgb7vv-w&callback=myMap"></script>
+
+</center>
+
+{% endblock %}

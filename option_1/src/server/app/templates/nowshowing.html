@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <body>
+    <h1 style="font-size: 50px; margin-left: auto; margin-right:auto;width:20%">Movies</h1>
+    <div style = "width:50%; margin:auto">
+    	{% for movie in movies %}
+          <div style="width:50%;float:left">
+            <h2>{{ movie.title }}</h2>
+        		<p>Blurb: {{ movie.blurb }}</p>
+        		<p>Director: {{ movie.director }}</p>
+        		<p>Certificate: {{ movie.certificate }} </p>
+            <p><a href="{{ url_for('movie', id=movie.id) }}"><button type="button">View Details</button></a></p>
+            <p><a href="{{ url_for('screenings', id=movie.id) }}"><button type="button">View Screenings</button></a></p>
+          </div>
+          <div style="width:40%;float:right">
+            <img src="{{ "static/images/"+movie.poster }}" width="150px">
+          </br></br>
+          </div>
+		{% endfor %}
+    </div>
+    {% endblock %}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% if title %}
+    <title>{{ title }}</title>
+  {% else %}
+    <title> No title specified</title>
+  {% endif %}
+</head>
+<body>
+  <h1>Add Movie</h1>
+  <form action="" method="post" name="AddMovie" enctype="multipart/form-data">
+  {{ addMovieform.hidden_tag() }}
+  <TABLE align="center" BORDER="0">
+    <TR>
+      <TD align="left">Title: </TD>
+      <TD align="right">
+        {{ addMovieform.title }}
+      </TD>
+    </TR>
+    <TR>
+      <TD align="left">Blurb: </TD>
+      <TD align="right">
+        {{ addMovieform.blurb }}
+      </TD>
+    </TR>
+    <TR>
+      <TD align="left">Certificate: </TD>
+      <TD align="right">
+        {{ addMovieform.certificate }}
+      </TD>
+    </TR>
+    <TR>
+      <TD align="left">Director: </TD>
+      <TD align="right">
+        {{ addMovieform.director }}
+      </TD>
+    </TR>
+    <TR>
+      <TD align="left">Duration: </TD>
+      <TD align="right">
+        {{ addMovieform.duration }}
+      </TD>
+      </TR>
+      <TR>
+        <TD align="left">Poster: </TD>
+        <TD align="right">
+          {{ addMovieform.poster }}
+        </TD>
+      </TR>
+    </TABLE>
+    <p><input type="submit" value="Add Movie"></p>
+  </form>
+
+  <h1>Screenings</h1>
+  {% for screening in screenings %}
+    <p>Movie: {{ movies[screening.movie-1].title }}</p>
+    <p>Screen: {{ screening.screen }}</p>
+    <p>Date: {{ screening.date }}</p>
+    <p>Time: {{ screening.time }}</p>
+    <a href="{{ url_for('delete_screening', id=screening.id) }}"><button>Remove</button></a>
+  {% endfor %}
+
+  <h1>Add Screening</h1>
+  <form action="" method="post" name="AddScreening">
+    {{ addScreeningform.hidden_tag() }}
+    <TABLE align="center" BORDER="0">
+      <TR>
+        <TD align="left">Movie: </TD>
+        <TD align="right">
+        {{ addScreeningform.movie }}
+        </TD>
+      </TR>
+      <TR>
+        <TD align="left">Screen: </TD>
+        <TD align="right">{{ addScreeningform.screen }}</TD>
+      </TR>
+      <TR>
+        <TD align="left">Date: </TD>
+        <TD align="right">{{ addScreeningform.date(type='date') }}</TD>
+      </TR>
+      <TR>
+        <TD align="left">Time: </TD>
+        <TD align="right">{{ addScreeningform.time(type='time') }}</TD>
+      </TR>
+    </TABLE>
+      <p><input type="submit" value="Add Screening"></p>
+    </form>
+
+    <h1>Screens</h1>
+    {% for screen in screens %}
+      <h3>Screen {{ screen.id }}</h3>
+      <a href="{{ url_for('delete_screen', id=screen.id) }}"><button>Remove </button></a>
+    {% endfor %}
+
+    <h1>Add Screen</h1>
+    <form action="" method="post" name="AddScreen">
+      {{ addScreenform.hidden_tag() }}
+      <p>{{ addScreenform.newscreen }}</p>
+    </form>
+  </body>
+</html>

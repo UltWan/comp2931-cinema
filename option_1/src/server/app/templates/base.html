@@ -1,38 +1,44 @@
 <!DOCTYPE html>
-
-<html >
-<link rel="stylesheet" href="static/bootstrap.min.css">
-<head>
-  {% if title %}
-  <title>{{ title }}</title>
-  {% else %}
-  <title> No title specified</title>
-  {% endif %}
-</head>
-
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">Task Manager</a>
+<html lang="en">    
+  <head>
+    {% block head %}
+      {% if title %}
+        <title>{{ title }}</title>
+      {% else %}
+        <title>JackDaw Cinema</title>
+      {% endif %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">      
+    {% endblock %}
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">JACKDAW CINEMA</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li {% if request.path == '/nowshowing' %}class="active"{% endif %}><a href="/nowshowing">Now Showing</a></li>
+          <li {% if request.path == '/where' %}class="active"{% endif %}><a href="/where">Locations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        {% if 'user' in session %}
+          <li {% if request.path == '/logout' %}class="active"{% endif %}><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        {% else %}
+          <li {% if request.path == '/register' %}class="active"{% endif %}><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li {% if request.path == '/login' %}class="active"{% endif %}><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% endif %}  
+        </ul>
+      </div>
+    </nav>
+    <div>
+      {% block content %}{% endblock %}
     </div>
-    <ul class="nav navbar-nav">
-      <li><button class="navbar"><a href="/">Movies</a></button></li>
-      <li><button class="navbar"><a href="/screenings">Screenings</a></button></li>
-      <li><a href="/add-task">Add task</a></li>
-      <form class="navbar-form navbar-right" role="search">
-        <input type="text" class="form-control" placeholder="Search" ng-model="search.name" ng-keyup="startSearch()">
-
-        </form>
-
-    </ul>
-
-  </div>
-</nav>
-<div class = "bcontent">
-  {% block content %}
-
-  {% endblock %}
-</div>
-
-</body>
+  </body>
 </html>
+

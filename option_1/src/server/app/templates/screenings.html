@@ -7,36 +7,26 @@
       <title> No title specified</title>
       {% endif %}
   </head>
-  <body>
 
-
+    <h1 style="font-size: 50px; margin-left: auto; margin-right:auto;width:40%">{{ movies[screenings[0].movie-1].title }} Screenings</h1>
     <div>
-      <table class="table table-striped">
+      <table class="table table-striped; color:black">
         <thead>
+        <th>Date</th>
         <th>Time</th>
         <th>Screen</th>
-
-        <th>Title</th>
-        <th>Age Rating</th>
+        <th>Seats remaining</th>
 
 
-      </thead>
 
-    	{% for p in screenings %}
-      <tr>
-      <td><h2>{{ p.time }}</h2></td>
-      <td><h2>{{ p.cinemascreens.num }}</h2></td>
-      <td><h2>{{ p.movies.title }}</h2></td>
-
-      <td><h2>{{ p.movies.certificate }}</h2></td>
+        </thead>
+    {% for screening in screenings %}
+      <td><h2> {{ screening.date }}</p></h2></td>
+      <td><h2> {{ screening.time }}</p></h2></td>
+      <td><h2>Screen {{ screening.screen }}</h2></h2></td>
+      <td><h2><p><a href="/purchase/{{screening.id}}"><button type="button">Buy Tickets</button></a></p></h2></td>
     </tr>
-
-
-
-		{% endfor %}
-    </table>
+    {% endfor %}
     </div>
-
-  </body>
 
 {% endblock %}

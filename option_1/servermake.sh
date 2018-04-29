@@ -12,6 +12,7 @@ server/bin/pip install flask-whooshalchemy
 server/bin/pip install flask-wtf
 server/bin/pip install flask-babel
 server/bin/pip install coverage
+server/bin/pip install WTForms-Components 
 cd server
 mkdir app
 mkdir app/static
@@ -21,4 +22,6 @@ cd ..
 cd ..
 cp -a src/server/. bin/server
 cd bin/server
+python db_create.py
 python run.py
+

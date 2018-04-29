@@ -1,4 +1,6 @@
-How to run MovieSelect:
+How to run the Jackdaw Cinema Staff Java program on Linux machines:
 
-javac MovieSelect.javac
-java -classpath ".:sqlite-jdbc-3.21.0.jar" MovieSelect
+Navigate inside the directory where the files are stored and open a terminal, then type the following commands:
+
+chmod +x javamake.sh
+./javamake.sh

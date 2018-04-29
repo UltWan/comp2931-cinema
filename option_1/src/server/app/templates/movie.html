@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+  <head>
+  {% if title %}
+      <title>{{ title }}</title>
+      {% else %}
+      <title> No title specified</title>
+      {% endif %}
+  </head>
+
+    <h1 style="font-size: 50px; margin-left: auto; margin-right:auto;width:40%">{{ movies[screenings[0].movie-1].title }} Screenings</h1>
+    <div>
+      <table class="table table-striped; color:black">
+        <thead>
+        <th>Time</th>
+        <th>Screen</th>
+        <th>Seats remaining</th>
+
+
+
+        </thead>
+    {% for screening in screenings %}
+      <td><h2>Screen: {{ screening.screen }}</h2></h2></td>
+      <td><h2>Seats available: {{ screening.seats_available }}</p></h2></td>
+      <td><h2>Date: {{ screening.date }}</p></h2></td>
+      <td><h2><p><a href="/purchase/{{screening.id}}"><button type="button">Buy Tickets</button></a></p></h2></td>
+    </tr>
+    {% endfor %}
+    </div>
+
+{% endblock %}

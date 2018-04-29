@@ -57,6 +57,8 @@
     <p>Movie: {{ movies[screening.movie-1].title }}</p>
     <p>Screen: {{ screening.screen }}</p>
     <p>Date: {{ screening.date }}</p>
+    <p>Time: {{ screening.time }}</p>
+    <a href="{{ url_for('delete_screening', id=screening.id) }}"><button>Remove</button></a>
   {% endfor %}
 
   <h1>Add Screening</h1>
@@ -74,8 +76,12 @@
         <TD align="right">{{ addScreeningform.screen }}</TD>
       </TR>
       <TR>
-        <TD align="left">Date(d/m/YYYY): </TD>
-        <TD align="right">{{ addScreeningform.date }}</TD>
+        <TD align="left">Date: </TD>
+        <TD align="right">{{ addScreeningform.date(type='date') }}</TD>
+      </TR>
+      <TR>
+        <TD align="left">Time: </TD>
+        <TD align="right">{{ addScreeningform.time(type='time') }}</TD>
       </TR>
     </TABLE>
       <p><input type="submit" value="Add Screening"></p>
@@ -84,6 +90,7 @@
     <h1>Screens</h1>
     {% for screen in screens %}
       <h3>Screen {{ screen.id }}</h3>
+      <a href="{{ url_for('delete_screen', id=screen.id) }}"><button>Remove </button></a>
     {% endfor %}
 
     <h1>Add Screen</h1>

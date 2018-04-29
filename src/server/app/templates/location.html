@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block head %}    
+    {{ super() }}
+{% endblock %}
+ {% block content %}
+  {% with messages = get_flashed_messages() %}
+   {% if messages %}
+    <ul>
+     {% for message in messages %}
+       <li>{{ message }} </li>
+     {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<script>
+function myMap() {
+  var mapCanvas = document.getElementById("map");
+  var myCenter = new google.maps.LatLng(53.804811,-1.554625); 
+  var mapOptions = {center: myCenter, zoom: 18};
+  var map = new google.maps.Map(mapCanvas,mapOptions);
+  var marker = new google.maps.Marker({
+    position: myCenter,
+    animation: google.maps.Animation.BOUNCE,
+    label: {
+    color: 'black',
+    fontWeight: 'bold',
+    text: 'JACKDAW CINEMA',
+  },
+  });
+  marker.setMap(map);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAebCOD0L8piu6ApctUQWb2vO8cgb7vv-w&callback=myMap"></script>
+
+{% endblock %}

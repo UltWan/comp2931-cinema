@@ -1,6 +1,7 @@
 from flask_wtf import Form
-from wtforms import TextField, TextAreaField, DateField, SelectField, SubmitField, IntegerField, HiddenField
+from wtforms import TextField, TextAreaField, DateField, SelectField, SubmitField, IntegerField, HiddenField, PasswordField
 from wtforms.validators import DataRequired
+from wtforms_components import TimeField
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 
@@ -15,12 +16,12 @@ class addMovie(Form):
 class addScreening(Form):
 	movie = SelectField('movie', choices=[], coerce=int)
 	screen = SelectField('screen', choices=[], coerce=int)
-	date = DateField('date', format='%d/%m/%Y', validators=[DataRequired()])
-	#time = SelectField('time', choices=[], coerce=int)
+	date = TextField('date', validators=[DataRequired()])
+	time = TextField('time', validators=[DataRequired()])
 	#date = DateField('date', format='%d/%m/%Y', validators=[DataRequired()])
 
 class addScreen(Form):
-	newscreen = SubmitField(label='New Screen')
+	newscreen = SubmitField(label='New Screen', validators=[DataRequired()])
 
 class purchaseTicket(Form):
 	cardholdern = TextField('cardholdern', validators=[DataRequired()])
@@ -29,8 +30,6 @@ class purchaseTicket(Form):
 	cvvnumber = IntegerField('cvvnumber', validators=[DataRequired()])
 
 	email = TextField('email', validators=[DataRequired()])
-
-	#ticketamount = SelectField('movie', choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')]), coerce=int)
 
 	adult_std_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
 	adult_vip_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
@@ -45,3 +44,14 @@ class purchaseTicket(Form):
 	senior_vip_ticket_amt = SelectField('movie', choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6')])
 
 	totaltickets = HiddenField("totaltickets")
+
+class Register(Form):
+	name = TextField('name', validators=[DataRequired()])
+	username = TextField('username', validators=[DataRequired()])
+	email = TextField('email', validators=[DataRequired()])
+	password = PasswordField('password', validators=[DataRequired()])
+	passwordconf = PasswordField('passwordconf', validators=[DataRequired()])
+
+class Login(Form):
+	username = TextField('username', validators=[DataRequired()])
+	password = PasswordField('password', validators=[DataRequired()])

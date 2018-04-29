@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block content %}
   <head>
   {% if title %}
       <title>{{ title }}</title>
@@ -7,14 +7,25 @@
       <title> No title specified</title>
       {% endif %}
   </head>
-  <body>
-    <h1 style="font-size: 50px">{{ movie.title }}</h1>
+
+    <h1 style="font-size: 50px; margin-left: auto; margin-right:auto;width:40%">{{ movies[screenings[0].movie-1].title }} Screenings</h1>
     <div>
-		<p>Blurb: {{ movie.blurb }}</p>
-		<p>Director: {{ movie.director }}</p>
-		<p>Certificate: {{ movie.certificate }} </p>
-    <p><a href="{{ url_for('screenings', id=movie.id) }}"><button type="button">View Screenings</button></a></p>
-    <img src="{{ url_for('static', filename='images/'+movie.poster) }}" width="20%">
+      <table class="table table-striped; color:black">
+        <thead>
+        <th>Time</th>
+        <th>Screen</th>
+        <th>Seats remaining</th>
+
+
+
+        </thead>
+    {% for screening in screenings %}
+      <td><h2>Screen: {{ screening.screen }}</h2></h2></td>
+      <td><h2>Seats available: {{ screening.seats_available }}</p></h2></td>
+      <td><h2>Date: {{ screening.date }}</p></h2></td>
+      <td><h2><p><a href="/purchase/{{screening.id}}"><button type="button">Buy Tickets</button></a></p></h2></td>
+    </tr>
+    {% endfor %}
     </div>
-  </body>
-</html>
+
+{% endblock %}

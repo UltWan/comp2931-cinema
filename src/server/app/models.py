@@ -19,7 +19,8 @@ class Screenings(db.Model):
     screen = db.Column(db.Integer, db.ForeignKey(Screens.id))
     tickets_sold = db.Column(db.Integer)
     seats_available = db.Column(db.Integer)
-    date = db.Column(db.String(13))
+    date = db.Column(db.String(12))
+    time = db.Column(db.String(12))
 
 class Tickets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,3 +37,10 @@ class Seats(db.Model):
     number = db.Column(db.Integer)
     available = db.Column(db.Boolean)
     vip = db.Column(db.Boolean)
+
+class Users(db.Model):
+    name = db.Column(db.String(50))
+    email = db.Column(db.String(150))
+    phone = db.Column(db.String(20))
+    username = db.Column(db.String(50), primary_key=True)
+    password = db.Column(db.String(50))
